@@ -59,6 +59,7 @@ statement
     | while_statement
     | do_while_statement
     | return_statement
+    | print_statement
     | var_assignment
     | list_assignment
     | list_push
@@ -99,6 +100,10 @@ do_if_expr
 
 return_statement
     : 'return' expr ';'
+    ;
+
+print_statement
+    : 'print' '(' expr ')' ';'
     ;
 
 expr

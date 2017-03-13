@@ -1,5 +1,8 @@
 begin
 
+# Lista Global
+list listaGlobalEntera(int);
+
 # Variables Globales Enteras
 int varGloEntSinAsig;
 int varGlobEntAsig = 2;
@@ -24,6 +27,16 @@ function string funcionString(string s){}
 function void funcionVacia(){}
 
 main{
+
+
+
+    boolean variableMainBooleana = listaGlobalEntera >> > 2;
+
+    int variableMainEntera = (2 + 2) * 4;
+
+    listaGlobalEntera << variableMainEntera;
+
+    print(listaGlobalEntera>>);
 
     while(x < y && 2 + 3 == 5 || 10 / 2 != 5){
         if (x > y){

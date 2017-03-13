@@ -237,6 +237,16 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitReturn_statement(CompiwaveParser.Return_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CompiwaveParser#print_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrint_statement(CompiwaveParser.Print_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CompiwaveParser#print_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrint_statement(CompiwaveParser.Print_statementContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ListPop}
 	 * labeled alternative in {@link CompiwaveParser#expr}.
 	 * @param ctx the parse tree

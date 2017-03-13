@@ -291,6 +291,18 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrint_statement(CompiwaveParser.Print_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrint_statement(CompiwaveParser.Print_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterListPop(CompiwaveParser.ListPopContext ctx) { }
 	/**
 	 * {@inheritDoc}
