@@ -5,26 +5,26 @@ compiwave
     ;
 
 var_declaration
-    : type ID (ASSIGN expr)? ';'
+    : cwtype ID (ASSIGN expr)? ';'
     ;
 
 list_declaration
-    : 'list' ID '(' type ')' ';'
+    : 'list' ID '(' cwtype ')' ';'
     ;
 
 function_declaration
-    : 'function' (type|'void') ID '(' function_params? ')' block
+    : 'function' (cwtype|'void') ID '(' function_params? ')' block
     ;
 
 function_params
-    : function_param (',' function_param)*
+    : numberOfParams+=function_param (',' numberOfParams+=function_param)*
     ;
 
 function_param
-    : type ID
+    : cwtype ID
     ;
 
-type
+cwtype
     : T_FLOAT | T_INT | T_BOOL | T_STRING
     ;
 
@@ -72,7 +72,7 @@ function_statement
     ;
 
 arguments
-	: expr (',' expr)*
+	: numberOfArguments+=expr (',' numberOfArguments+=expr)*
 	;
 
 if_statement
