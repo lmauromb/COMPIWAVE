@@ -232,6 +232,13 @@ public interface CompiwaveVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionCall(CompiwaveParser.FunctionCallContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code AndOr}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndOr(CompiwaveParser.AndOrContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Paren}
 	 * labeled alternative in {@link CompiwaveParser#expr}.
 	 * @param ctx the parse tree

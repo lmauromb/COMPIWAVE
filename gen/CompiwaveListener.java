@@ -381,6 +381,18 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitFunctionCall(CompiwaveParser.FunctionCallContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code AndOr}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndOr(CompiwaveParser.AndOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AndOr}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndOr(CompiwaveParser.AndOrContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Paren}
 	 * labeled alternative in {@link CompiwaveParser#expr}.
 	 * @param ctx the parse tree

@@ -435,6 +435,18 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAndOr(CompiwaveParser.AndOrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAndOr(CompiwaveParser.AndOrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParen(CompiwaveParser.ParenContext ctx) { }
 	/**
 	 * {@inheritDoc}
