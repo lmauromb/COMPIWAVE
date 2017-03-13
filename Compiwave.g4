@@ -115,6 +115,7 @@ expr
     | expr (ADD | MINUS) expr                   #AddSub
     | expr (LT | GT | LEQUAL | GEQUAL) expr     #LTGT
     | expr (EQUALS | NOTEQUAL) expr             #EqualityNot
+    | expr (AND | OR) expr                      #AndOr
     ;
 
 PUSH : '<<';
@@ -132,6 +133,8 @@ LT : '<';
 GT : '>';
 LEQUAL : '<=';
 GEQUAL : '>=';
+AND : '&&';
+OR : '||';
 
 T_FLOAT : 'float';
 T_INT : 'int';
