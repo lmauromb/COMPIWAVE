@@ -53,7 +53,8 @@ main_function
     ;
 
 statement
-    : var_declaration
+    : block
+    | var_declaration
     | list_declaration
     | if_statement
     | while_statement

@@ -6,7 +6,7 @@ from io import StringIO
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\60")
-        buf.write("\u0100\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u0101\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -19,25 +19,25 @@ def serializedATN():
         buf.write("\f\7\f~\n\f\f\f\16\f\u0081\13\f\3\f\3\f\3\f\3\r\3\r\7")
         buf.write("\r\u0088\n\r\f\r\16\r\u008b\13\r\3\r\3\r\3\16\3\16\3\16")
         buf.write("\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17")
-        buf.write("\3\17\3\17\3\17\3\17\3\17\5\17\u00a2\n\17\3\20\3\20\3")
-        buf.write("\20\5\20\u00a7\n\20\3\20\3\20\3\21\3\21\3\21\7\21\u00ae")
-        buf.write("\n\21\f\21\16\21\u00b1\13\21\3\22\3\22\3\22\3\22\3\22")
-        buf.write("\3\22\5\22\u00b9\n\22\3\23\3\23\3\23\3\24\3\24\3\24\3")
-        buf.write("\24\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\26")
-        buf.write("\3\26\3\27\3\27\3\30\3\30\3\30\3\30\3\31\3\31\3\31\3\31")
-        buf.write("\3\31\3\31\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32")
-        buf.write("\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\5\32\u00ea\n")
-        buf.write("\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32")
-        buf.write("\3\32\3\32\3\32\3\32\3\32\7\32\u00fb\n\32\f\32\16\32\u00fe")
+        buf.write("\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00a3\n\17\3\20\3")
+        buf.write("\20\3\20\5\20\u00a8\n\20\3\20\3\20\3\21\3\21\3\21\7\21")
+        buf.write("\u00af\n\21\f\21\16\21\u00b2\13\21\3\22\3\22\3\22\3\22")
+        buf.write("\3\22\3\22\5\22\u00ba\n\22\3\23\3\23\3\23\3\24\3\24\3")
+        buf.write("\24\3\24\3\24\3\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25")
+        buf.write("\3\26\3\26\3\27\3\27\3\30\3\30\3\30\3\30\3\31\3\31\3\31")
+        buf.write("\3\31\3\31\3\31\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32")
+        buf.write("\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\5\32\u00eb")
+        buf.write("\n\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32\3\32")
+        buf.write("\3\32\3\32\3\32\3\32\3\32\7\32\u00fc\n\32\f\32\16\32\u00ff")
         buf.write("\13\32\3\32\2\3\62\33\2\4\6\b\n\f\16\20\22\24\26\30\32")
         buf.write("\34\36 \"$&(*,.\60\62\2\b\3\2&)\3\2\34\35\3\2\32\33\3")
-        buf.write("\2 #\3\2\36\37\3\2$%\u010a\2\64\3\2\2\2\4@\3\2\2\2\6H")
+        buf.write("\2 #\3\2\36\37\3\2$%\u010c\2\64\3\2\2\2\4@\3\2\2\2\6H")
         buf.write("\3\2\2\2\bO\3\2\2\2\n\\\3\2\2\2\fd\3\2\2\2\16g\3\2\2\2")
         buf.write("\20i\3\2\2\2\22q\3\2\2\2\24v\3\2\2\2\26y\3\2\2\2\30\u0085")
-        buf.write("\3\2\2\2\32\u008e\3\2\2\2\34\u00a1\3\2\2\2\36\u00a3\3")
-        buf.write("\2\2\2 \u00aa\3\2\2\2\"\u00b2\3\2\2\2$\u00ba\3\2\2\2&")
-        buf.write("\u00bd\3\2\2\2(\u00c3\3\2\2\2*\u00ca\3\2\2\2,\u00cc\3")
-        buf.write("\2\2\2.\u00ce\3\2\2\2\60\u00d2\3\2\2\2\62\u00e9\3\2\2")
+        buf.write("\3\2\2\2\32\u008e\3\2\2\2\34\u00a2\3\2\2\2\36\u00a4\3")
+        buf.write("\2\2\2 \u00ab\3\2\2\2\"\u00b3\3\2\2\2$\u00bb\3\2\2\2&")
+        buf.write("\u00be\3\2\2\2(\u00c4\3\2\2\2*\u00cb\3\2\2\2,\u00cd\3")
+        buf.write("\2\2\2.\u00cf\3\2\2\2\60\u00d3\3\2\2\2\62\u00ea\3\2\2")
         buf.write("\2\64:\7\3\2\2\659\5\4\3\2\669\5\6\4\2\679\5\b\5\28\65")
         buf.write("\3\2\2\28\66\3\2\2\28\67\3\2\2\29<\3\2\2\2:8\3\2\2\2:")
         buf.write(";\3\2\2\2;=\3\2\2\2<:\3\2\2\2=>\5\32\16\2>?\7\4\2\2?\3")
@@ -61,58 +61,59 @@ def serializedATN():
         buf.write("\3\2\2\2\u0089\u0087\3\2\2\2\u0089\u008a\3\2\2\2\u008a")
         buf.write("\u008c\3\2\2\2\u008b\u0089\3\2\2\2\u008c\u008d\7\17\2")
         buf.write("\2\u008d\31\3\2\2\2\u008e\u008f\7\20\2\2\u008f\u0090\5")
-        buf.write("\30\r\2\u0090\33\3\2\2\2\u0091\u00a2\5\4\3\2\u0092\u00a2")
-        buf.write("\5\6\4\2\u0093\u00a2\5\"\22\2\u0094\u00a2\5&\24\2\u0095")
-        buf.write("\u00a2\5(\25\2\u0096\u00a2\5.\30\2\u0097\u00a2\5\60\31")
-        buf.write("\2\u0098\u00a2\5\26\f\2\u0099\u00a2\5\20\t\2\u009a\u00a2")
-        buf.write("\5\22\n\2\u009b\u009c\5\24\13\2\u009c\u009d\7\5\2\2\u009d")
-        buf.write("\u00a2\3\2\2\2\u009e\u009f\5\36\20\2\u009f\u00a0\7\5\2")
-        buf.write("\2\u00a0\u00a2\3\2\2\2\u00a1\u0091\3\2\2\2\u00a1\u0092")
-        buf.write("\3\2\2\2\u00a1\u0093\3\2\2\2\u00a1\u0094\3\2\2\2\u00a1")
-        buf.write("\u0095\3\2\2\2\u00a1\u0096\3\2\2\2\u00a1\u0097\3\2\2\2")
-        buf.write("\u00a1\u0098\3\2\2\2\u00a1\u0099\3\2\2\2\u00a1\u009a\3")
-        buf.write("\2\2\2\u00a1\u009b\3\2\2\2\u00a1\u009e\3\2\2\2\u00a2\35")
-        buf.write("\3\2\2\2\u00a3\u00a4\7*\2\2\u00a4\u00a6\7\7\2\2\u00a5")
-        buf.write("\u00a7\5 \21\2\u00a6\u00a5\3\2\2\2\u00a6\u00a7\3\2\2\2")
-        buf.write("\u00a7\u00a8\3\2\2\2\u00a8\u00a9\7\b\2\2\u00a9\37\3\2")
-        buf.write("\2\2\u00aa\u00af\5\62\32\2\u00ab\u00ac\7\13\2\2\u00ac")
-        buf.write("\u00ae\5\62\32\2\u00ad\u00ab\3\2\2\2\u00ae\u00b1\3\2\2")
-        buf.write("\2\u00af\u00ad\3\2\2\2\u00af\u00b0\3\2\2\2\u00b0!\3\2")
-        buf.write("\2\2\u00b1\u00af\3\2\2\2\u00b2\u00b3\7\21\2\2\u00b3\u00b4")
-        buf.write("\7\7\2\2\u00b4\u00b5\5*\26\2\u00b5\u00b6\7\b\2\2\u00b6")
-        buf.write("\u00b8\5\30\r\2\u00b7\u00b9\5$\23\2\u00b8\u00b7\3\2\2")
-        buf.write("\2\u00b8\u00b9\3\2\2\2\u00b9#\3\2\2\2\u00ba\u00bb\7\22")
-        buf.write("\2\2\u00bb\u00bc\5\30\r\2\u00bc%\3\2\2\2\u00bd\u00be\7")
-        buf.write("\23\2\2\u00be\u00bf\7\7\2\2\u00bf\u00c0\5*\26\2\u00c0")
-        buf.write("\u00c1\7\b\2\2\u00c1\u00c2\5\30\r\2\u00c2\'\3\2\2\2\u00c3")
-        buf.write("\u00c4\7\24\2\2\u00c4\u00c5\5\30\r\2\u00c5\u00c6\7\23")
-        buf.write("\2\2\u00c6\u00c7\7\7\2\2\u00c7\u00c8\5,\27\2\u00c8\u00c9")
-        buf.write("\7\b\2\2\u00c9)\3\2\2\2\u00ca\u00cb\5\62\32\2\u00cb+\3")
-        buf.write("\2\2\2\u00cc\u00cd\5\62\32\2\u00cd-\3\2\2\2\u00ce\u00cf")
-        buf.write("\7\25\2\2\u00cf\u00d0\5\62\32\2\u00d0\u00d1\7\5\2\2\u00d1")
-        buf.write("/\3\2\2\2\u00d2\u00d3\7\26\2\2\u00d3\u00d4\7\7\2\2\u00d4")
-        buf.write("\u00d5\5\62\32\2\u00d5\u00d6\7\b\2\2\u00d6\u00d7\7\5\2")
-        buf.write("\2\u00d7\61\3\2\2\2\u00d8\u00d9\b\32\1\2\u00d9\u00ea\5")
-        buf.write("\36\20\2\u00da\u00db\7*\2\2\u00db\u00dc\7\f\2\2\u00dc")
-        buf.write("\u00dd\5\62\32\2\u00dd\u00de\7\r\2\2\u00de\u00ea\3\2\2")
-        buf.write("\2\u00df\u00ea\5\24\13\2\u00e0\u00ea\7*\2\2\u00e1\u00ea")
-        buf.write("\7,\2\2\u00e2\u00ea\7-\2\2\u00e3\u00ea\7+\2\2\u00e4\u00ea")
-        buf.write("\7.\2\2\u00e5\u00e6\7\7\2\2\u00e6\u00e7\5\62\32\2\u00e7")
-        buf.write("\u00e8\7\b\2\2\u00e8\u00ea\3\2\2\2\u00e9\u00d8\3\2\2\2")
-        buf.write("\u00e9\u00da\3\2\2\2\u00e9\u00df\3\2\2\2\u00e9\u00e0\3")
-        buf.write("\2\2\2\u00e9\u00e1\3\2\2\2\u00e9\u00e2\3\2\2\2\u00e9\u00e3")
-        buf.write("\3\2\2\2\u00e9\u00e4\3\2\2\2\u00e9\u00e5\3\2\2\2\u00ea")
-        buf.write("\u00fc\3\2\2\2\u00eb\u00ec\f\7\2\2\u00ec\u00ed\t\3\2\2")
-        buf.write("\u00ed\u00fb\5\62\32\b\u00ee\u00ef\f\6\2\2\u00ef\u00f0")
-        buf.write("\t\4\2\2\u00f0\u00fb\5\62\32\7\u00f1\u00f2\f\5\2\2\u00f2")
-        buf.write("\u00f3\t\5\2\2\u00f3\u00fb\5\62\32\6\u00f4\u00f5\f\4\2")
-        buf.write("\2\u00f5\u00f6\t\6\2\2\u00f6\u00fb\5\62\32\5\u00f7\u00f8")
-        buf.write("\f\3\2\2\u00f8\u00f9\t\7\2\2\u00f9\u00fb\5\62\32\4\u00fa")
-        buf.write("\u00eb\3\2\2\2\u00fa\u00ee\3\2\2\2\u00fa\u00f1\3\2\2\2")
-        buf.write("\u00fa\u00f4\3\2\2\2\u00fa\u00f7\3\2\2\2\u00fb\u00fe\3")
-        buf.write("\2\2\2\u00fc\u00fa\3\2\2\2\u00fc\u00fd\3\2\2\2\u00fd\63")
-        buf.write("\3\2\2\2\u00fe\u00fc\3\2\2\2\218:DRWa\177\u0089\u00a1")
-        buf.write("\u00a6\u00af\u00b8\u00e9\u00fa\u00fc")
+        buf.write("\30\r\2\u0090\33\3\2\2\2\u0091\u00a3\5\30\r\2\u0092\u00a3")
+        buf.write("\5\4\3\2\u0093\u00a3\5\6\4\2\u0094\u00a3\5\"\22\2\u0095")
+        buf.write("\u00a3\5&\24\2\u0096\u00a3\5(\25\2\u0097\u00a3\5.\30\2")
+        buf.write("\u0098\u00a3\5\60\31\2\u0099\u00a3\5\26\f\2\u009a\u00a3")
+        buf.write("\5\20\t\2\u009b\u00a3\5\22\n\2\u009c\u009d\5\24\13\2\u009d")
+        buf.write("\u009e\7\5\2\2\u009e\u00a3\3\2\2\2\u009f\u00a0\5\36\20")
+        buf.write("\2\u00a0\u00a1\7\5\2\2\u00a1\u00a3\3\2\2\2\u00a2\u0091")
+        buf.write("\3\2\2\2\u00a2\u0092\3\2\2\2\u00a2\u0093\3\2\2\2\u00a2")
+        buf.write("\u0094\3\2\2\2\u00a2\u0095\3\2\2\2\u00a2\u0096\3\2\2\2")
+        buf.write("\u00a2\u0097\3\2\2\2\u00a2\u0098\3\2\2\2\u00a2\u0099\3")
+        buf.write("\2\2\2\u00a2\u009a\3\2\2\2\u00a2\u009b\3\2\2\2\u00a2\u009c")
+        buf.write("\3\2\2\2\u00a2\u009f\3\2\2\2\u00a3\35\3\2\2\2\u00a4\u00a5")
+        buf.write("\7*\2\2\u00a5\u00a7\7\7\2\2\u00a6\u00a8\5 \21\2\u00a7")
+        buf.write("\u00a6\3\2\2\2\u00a7\u00a8\3\2\2\2\u00a8\u00a9\3\2\2\2")
+        buf.write("\u00a9\u00aa\7\b\2\2\u00aa\37\3\2\2\2\u00ab\u00b0\5\62")
+        buf.write("\32\2\u00ac\u00ad\7\13\2\2\u00ad\u00af\5\62\32\2\u00ae")
+        buf.write("\u00ac\3\2\2\2\u00af\u00b2\3\2\2\2\u00b0\u00ae\3\2\2\2")
+        buf.write("\u00b0\u00b1\3\2\2\2\u00b1!\3\2\2\2\u00b2\u00b0\3\2\2")
+        buf.write("\2\u00b3\u00b4\7\21\2\2\u00b4\u00b5\7\7\2\2\u00b5\u00b6")
+        buf.write("\5*\26\2\u00b6\u00b7\7\b\2\2\u00b7\u00b9\5\30\r\2\u00b8")
+        buf.write("\u00ba\5$\23\2\u00b9\u00b8\3\2\2\2\u00b9\u00ba\3\2\2\2")
+        buf.write("\u00ba#\3\2\2\2\u00bb\u00bc\7\22\2\2\u00bc\u00bd\5\30")
+        buf.write("\r\2\u00bd%\3\2\2\2\u00be\u00bf\7\23\2\2\u00bf\u00c0\7")
+        buf.write("\7\2\2\u00c0\u00c1\5*\26\2\u00c1\u00c2\7\b\2\2\u00c2\u00c3")
+        buf.write("\5\30\r\2\u00c3\'\3\2\2\2\u00c4\u00c5\7\24\2\2\u00c5\u00c6")
+        buf.write("\5\30\r\2\u00c6\u00c7\7\23\2\2\u00c7\u00c8\7\7\2\2\u00c8")
+        buf.write("\u00c9\5,\27\2\u00c9\u00ca\7\b\2\2\u00ca)\3\2\2\2\u00cb")
+        buf.write("\u00cc\5\62\32\2\u00cc+\3\2\2\2\u00cd\u00ce\5\62\32\2")
+        buf.write("\u00ce-\3\2\2\2\u00cf\u00d0\7\25\2\2\u00d0\u00d1\5\62")
+        buf.write("\32\2\u00d1\u00d2\7\5\2\2\u00d2/\3\2\2\2\u00d3\u00d4\7")
+        buf.write("\26\2\2\u00d4\u00d5\7\7\2\2\u00d5\u00d6\5\62\32\2\u00d6")
+        buf.write("\u00d7\7\b\2\2\u00d7\u00d8\7\5\2\2\u00d8\61\3\2\2\2\u00d9")
+        buf.write("\u00da\b\32\1\2\u00da\u00eb\5\36\20\2\u00db\u00dc\7*\2")
+        buf.write("\2\u00dc\u00dd\7\f\2\2\u00dd\u00de\5\62\32\2\u00de\u00df")
+        buf.write("\7\r\2\2\u00df\u00eb\3\2\2\2\u00e0\u00eb\5\24\13\2\u00e1")
+        buf.write("\u00eb\7*\2\2\u00e2\u00eb\7,\2\2\u00e3\u00eb\7-\2\2\u00e4")
+        buf.write("\u00eb\7+\2\2\u00e5\u00eb\7.\2\2\u00e6\u00e7\7\7\2\2\u00e7")
+        buf.write("\u00e8\5\62\32\2\u00e8\u00e9\7\b\2\2\u00e9\u00eb\3\2\2")
+        buf.write("\2\u00ea\u00d9\3\2\2\2\u00ea\u00db\3\2\2\2\u00ea\u00e0")
+        buf.write("\3\2\2\2\u00ea\u00e1\3\2\2\2\u00ea\u00e2\3\2\2\2\u00ea")
+        buf.write("\u00e3\3\2\2\2\u00ea\u00e4\3\2\2\2\u00ea\u00e5\3\2\2\2")
+        buf.write("\u00ea\u00e6\3\2\2\2\u00eb\u00fd\3\2\2\2\u00ec\u00ed\f")
+        buf.write("\7\2\2\u00ed\u00ee\t\3\2\2\u00ee\u00fc\5\62\32\b\u00ef")
+        buf.write("\u00f0\f\6\2\2\u00f0\u00f1\t\4\2\2\u00f1\u00fc\5\62\32")
+        buf.write("\7\u00f2\u00f3\f\5\2\2\u00f3\u00f4\t\5\2\2\u00f4\u00fc")
+        buf.write("\5\62\32\6\u00f5\u00f6\f\4\2\2\u00f6\u00f7\t\6\2\2\u00f7")
+        buf.write("\u00fc\5\62\32\5\u00f8\u00f9\f\3\2\2\u00f9\u00fa\t\7\2")
+        buf.write("\2\u00fa\u00fc\5\62\32\4\u00fb\u00ec\3\2\2\2\u00fb\u00ef")
+        buf.write("\3\2\2\2\u00fb\u00f2\3\2\2\2\u00fb\u00f5\3\2\2\2\u00fb")
+        buf.write("\u00f8\3\2\2\2\u00fc\u00ff\3\2\2\2\u00fd\u00fb\3\2\2\2")
+        buf.write("\u00fd\u00fe\3\2\2\2\u00fe\63\3\2\2\2\u00ff\u00fd\3\2")
+        buf.write("\2\2\218:DRWa\177\u0089\u00a2\u00a7\u00b0\u00b9\u00ea")
+        buf.write("\u00fb\u00fd")
         return buf.getvalue()
 
 
@@ -953,7 +954,7 @@ class CompiwaveParser ( Parser ):
             self.state = 135
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CompiwaveParser.T__3) | (1 << CompiwaveParser.T__14) | (1 << CompiwaveParser.T__16) | (1 << CompiwaveParser.T__17) | (1 << CompiwaveParser.T__18) | (1 << CompiwaveParser.T__19) | (1 << CompiwaveParser.T_FLOAT) | (1 << CompiwaveParser.T_INT) | (1 << CompiwaveParser.T_BOOL) | (1 << CompiwaveParser.T_STRING) | (1 << CompiwaveParser.ID))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CompiwaveParser.T__3) | (1 << CompiwaveParser.T__11) | (1 << CompiwaveParser.T__14) | (1 << CompiwaveParser.T__16) | (1 << CompiwaveParser.T__17) | (1 << CompiwaveParser.T__18) | (1 << CompiwaveParser.T__19) | (1 << CompiwaveParser.T_FLOAT) | (1 << CompiwaveParser.T_INT) | (1 << CompiwaveParser.T_BOOL) | (1 << CompiwaveParser.T_STRING) | (1 << CompiwaveParser.ID))) != 0):
                 self.state = 132
                 self.statement()
                 self.state = 137
@@ -1017,6 +1018,10 @@ class CompiwaveParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+
+        def block(self):
+            return self.getTypedRuleContext(CompiwaveParser.BlockContext,0)
+
 
         def var_declaration(self):
             return self.getTypedRuleContext(CompiwaveParser.Var_declarationContext,0)
@@ -1085,82 +1090,88 @@ class CompiwaveParser ( Parser ):
         localctx = CompiwaveParser.StatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_statement)
         try:
-            self.state = 159
+            self.state = 160
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 143
-                self.var_declaration()
+                self.block()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 144
-                self.list_declaration()
+                self.var_declaration()
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 145
-                self.if_statement()
+                self.list_declaration()
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
                 self.state = 146
-                self.while_statement()
+                self.if_statement()
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
                 self.state = 147
-                self.do_while_statement()
+                self.while_statement()
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
                 self.state = 148
-                self.return_statement()
+                self.do_while_statement()
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
                 self.state = 149
-                self.print_statement()
+                self.return_statement()
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
                 self.state = 150
-                self.var_assignment()
+                self.print_statement()
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
                 self.state = 151
-                self.list_assignment()
+                self.var_assignment()
                 pass
 
             elif la_ == 10:
                 self.enterOuterAlt(localctx, 10)
                 self.state = 152
-                self.list_push()
+                self.list_assignment()
                 pass
 
             elif la_ == 11:
                 self.enterOuterAlt(localctx, 11)
                 self.state = 153
-                self.list_pop()
-                self.state = 154
-                self.match(CompiwaveParser.T__2)
+                self.list_push()
                 pass
 
             elif la_ == 12:
                 self.enterOuterAlt(localctx, 12)
-                self.state = 156
-                self.function_statement()
+                self.state = 154
+                self.list_pop()
+                self.state = 155
+                self.match(CompiwaveParser.T__2)
+                pass
+
+            elif la_ == 13:
+                self.enterOuterAlt(localctx, 13)
                 self.state = 157
+                self.function_statement()
+                self.state = 158
                 self.match(CompiwaveParser.T__2)
                 pass
 
@@ -1207,19 +1218,19 @@ class CompiwaveParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 161
-            self.match(CompiwaveParser.ID)
             self.state = 162
+            self.match(CompiwaveParser.ID)
+            self.state = 163
             self.match(CompiwaveParser.T__4)
-            self.state = 164
+            self.state = 165
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CompiwaveParser.T__4) | (1 << CompiwaveParser.ID) | (1 << CompiwaveParser.BOOLEAN) | (1 << CompiwaveParser.INT) | (1 << CompiwaveParser.FLOAT) | (1 << CompiwaveParser.STRING))) != 0):
-                self.state = 163
+                self.state = 164
                 self.arguments()
 
 
-            self.state = 166
+            self.state = 167
             self.match(CompiwaveParser.T__5)
         except RecognitionException as re:
             localctx.exception = re
@@ -1265,19 +1276,19 @@ class CompiwaveParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 168
+            self.state = 169
             localctx._expr = self.expr(0)
             localctx.numberOfArguments.append(localctx._expr)
-            self.state = 173
+            self.state = 174
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==CompiwaveParser.T__8:
-                self.state = 169
-                self.match(CompiwaveParser.T__8)
                 self.state = 170
+                self.match(CompiwaveParser.T__8)
+                self.state = 171
                 localctx._expr = self.expr(0)
                 localctx.numberOfArguments.append(localctx._expr)
-                self.state = 175
+                self.state = 176
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -1328,21 +1339,21 @@ class CompiwaveParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 176
-            self.match(CompiwaveParser.T__14)
             self.state = 177
-            self.match(CompiwaveParser.T__4)
+            self.match(CompiwaveParser.T__14)
             self.state = 178
-            self.if_expr()
+            self.match(CompiwaveParser.T__4)
             self.state = 179
-            self.match(CompiwaveParser.T__5)
+            self.if_expr()
             self.state = 180
+            self.match(CompiwaveParser.T__5)
+            self.state = 181
             self.block()
-            self.state = 182
+            self.state = 183
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==CompiwaveParser.T__15:
-                self.state = 181
+                self.state = 182
                 self.else_statement()
 
 
@@ -1384,9 +1395,9 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_else_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 184
-            self.match(CompiwaveParser.T__15)
             self.state = 185
+            self.match(CompiwaveParser.T__15)
+            self.state = 186
             self.block()
         except RecognitionException as re:
             localctx.exception = re
@@ -1430,15 +1441,15 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_while_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 187
-            self.match(CompiwaveParser.T__16)
             self.state = 188
-            self.match(CompiwaveParser.T__4)
+            self.match(CompiwaveParser.T__16)
             self.state = 189
-            self.if_expr()
+            self.match(CompiwaveParser.T__4)
             self.state = 190
-            self.match(CompiwaveParser.T__5)
+            self.if_expr()
             self.state = 191
+            self.match(CompiwaveParser.T__5)
+            self.state = 192
             self.block()
         except RecognitionException as re:
             localctx.exception = re
@@ -1482,17 +1493,17 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 38, self.RULE_do_while_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 193
-            self.match(CompiwaveParser.T__17)
             self.state = 194
-            self.block()
+            self.match(CompiwaveParser.T__17)
             self.state = 195
-            self.match(CompiwaveParser.T__16)
+            self.block()
             self.state = 196
-            self.match(CompiwaveParser.T__4)
+            self.match(CompiwaveParser.T__16)
             self.state = 197
-            self.do_if_expr()
+            self.match(CompiwaveParser.T__4)
             self.state = 198
+            self.do_if_expr()
+            self.state = 199
             self.match(CompiwaveParser.T__5)
         except RecognitionException as re:
             localctx.exception = re
@@ -1532,7 +1543,7 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 40, self.RULE_if_expr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 200
+            self.state = 201
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1572,7 +1583,7 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 42, self.RULE_do_if_expr)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 202
+            self.state = 203
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -1612,11 +1623,11 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 44, self.RULE_return_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 204
-            self.match(CompiwaveParser.T__18)
             self.state = 205
-            self.expr(0)
+            self.match(CompiwaveParser.T__18)
             self.state = 206
+            self.expr(0)
+            self.state = 207
             self.match(CompiwaveParser.T__2)
         except RecognitionException as re:
             localctx.exception = re
@@ -1656,15 +1667,15 @@ class CompiwaveParser ( Parser ):
         self.enterRule(localctx, 46, self.RULE_print_statement)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 208
-            self.match(CompiwaveParser.T__19)
             self.state = 209
-            self.match(CompiwaveParser.T__4)
+            self.match(CompiwaveParser.T__19)
             self.state = 210
-            self.expr(0)
+            self.match(CompiwaveParser.T__4)
             self.state = 211
-            self.match(CompiwaveParser.T__5)
+            self.expr(0)
             self.state = 212
+            self.match(CompiwaveParser.T__5)
+            self.state = 213
             self.match(CompiwaveParser.T__2)
         except RecognitionException as re:
             localctx.exception = re
@@ -2002,7 +2013,7 @@ class CompiwaveParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 231
+            self.state = 232
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,12,self._ctx)
             if la_ == 1:
@@ -2010,7 +2021,7 @@ class CompiwaveParser ( Parser ):
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 215
+                self.state = 216
                 self.function_statement()
                 pass
 
@@ -2018,13 +2029,13 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.ListIndexContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 216
-                self.match(CompiwaveParser.ID)
                 self.state = 217
-                self.match(CompiwaveParser.T__9)
+                self.match(CompiwaveParser.ID)
                 self.state = 218
-                self.expr(0)
+                self.match(CompiwaveParser.T__9)
                 self.state = 219
+                self.expr(0)
+                self.state = 220
                 self.match(CompiwaveParser.T__10)
                 pass
 
@@ -2032,7 +2043,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.ListPopContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 221
+                self.state = 222
                 self.list_pop()
                 pass
 
@@ -2040,7 +2051,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.VarReferenceContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 222
+                self.state = 223
                 self.match(CompiwaveParser.ID)
                 pass
 
@@ -2048,7 +2059,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.IntConstContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 223
+                self.state = 224
                 self.match(CompiwaveParser.INT)
                 pass
 
@@ -2056,7 +2067,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.FloatConstContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 224
+                self.state = 225
                 self.match(CompiwaveParser.FLOAT)
                 pass
 
@@ -2064,7 +2075,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.BoolConstContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 225
+                self.state = 226
                 self.match(CompiwaveParser.BOOLEAN)
                 pass
 
@@ -2072,7 +2083,7 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.StringConstContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 226
+                self.state = 227
                 self.match(CompiwaveParser.STRING)
                 pass
 
@@ -2080,17 +2091,17 @@ class CompiwaveParser ( Parser ):
                 localctx = CompiwaveParser.ParenContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 227
-                self.match(CompiwaveParser.T__4)
                 self.state = 228
-                self.expr(0)
+                self.match(CompiwaveParser.T__4)
                 self.state = 229
+                self.expr(0)
+                self.state = 230
                 self.match(CompiwaveParser.T__5)
                 pass
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 250
+            self.state = 251
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,14,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -2098,101 +2109,101 @@ class CompiwaveParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 248
+                    self.state = 249
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
                     if la_ == 1:
                         localctx = CompiwaveParser.MultDivContext(self, CompiwaveParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 233
+                        self.state = 234
                         if not self.precpred(self._ctx, 5):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 234
+                        self.state = 235
                         _la = self._input.LA(1)
                         if not(_la==CompiwaveParser.MULT or _la==CompiwaveParser.DIV):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 235
+                        self.state = 236
                         self.expr(6)
                         pass
 
                     elif la_ == 2:
                         localctx = CompiwaveParser.AddSubContext(self, CompiwaveParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 236
+                        self.state = 237
                         if not self.precpred(self._ctx, 4):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 237
+                        self.state = 238
                         _la = self._input.LA(1)
                         if not(_la==CompiwaveParser.ADD or _la==CompiwaveParser.MINUS):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 238
+                        self.state = 239
                         self.expr(5)
                         pass
 
                     elif la_ == 3:
                         localctx = CompiwaveParser.LTGTContext(self, CompiwaveParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 239
+                        self.state = 240
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 240
+                        self.state = 241
                         _la = self._input.LA(1)
                         if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << CompiwaveParser.LT) | (1 << CompiwaveParser.GT) | (1 << CompiwaveParser.LEQUAL) | (1 << CompiwaveParser.GEQUAL))) != 0)):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 241
+                        self.state = 242
                         self.expr(4)
                         pass
 
                     elif la_ == 4:
                         localctx = CompiwaveParser.EqualityNotContext(self, CompiwaveParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 242
+                        self.state = 243
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 243
+                        self.state = 244
                         _la = self._input.LA(1)
                         if not(_la==CompiwaveParser.EQUALS or _la==CompiwaveParser.NOTEQUAL):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 244
+                        self.state = 245
                         self.expr(3)
                         pass
 
                     elif la_ == 5:
                         localctx = CompiwaveParser.AndOrContext(self, CompiwaveParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 245
+                        self.state = 246
                         if not self.precpred(self._ctx, 1):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                        self.state = 246
+                        self.state = 247
                         _la = self._input.LA(1)
                         if not(_la==CompiwaveParser.AND or _la==CompiwaveParser.OR):
                             self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 247
+                        self.state = 248
                         self.expr(2)
                         pass
 
              
-                self.state = 252
+                self.state = 253
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,14,self._ctx)
 
