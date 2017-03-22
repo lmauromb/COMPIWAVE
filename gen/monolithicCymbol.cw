@@ -1,13 +1,19 @@
 begin
 
-    function int f(){}
+    function int f(){
+        int i;
+        float ff;
+    }
 
-    function int f(){}
+    function int g(){}
 
     main
     {
         int x;
-        {list z (int);}
-        {list z (int);}
+
+        if(x){
+            x = 2;
+        }
+
     }
 end

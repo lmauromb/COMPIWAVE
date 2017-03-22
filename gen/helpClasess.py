@@ -48,11 +48,12 @@ class MethodSymbol(Symbol):
         sym.scope = self # track the scope for each symbol
 
     def getScopeName(self):
-        return "fun:{}".format(self.name)
+        return "{}".format(self.name)
 
     def __str__(self):
-        s = 'method {name} : {args}'.format(
+        s = '<<fun {name}:{cwtype} = {args}>>'.format(
             name=self.name,
+            cwtype=self.cwtype,
             args=[value for value in self.orderedArgs.values()]
         )
         return s

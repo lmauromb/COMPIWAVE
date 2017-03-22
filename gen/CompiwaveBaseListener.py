@@ -17,7 +17,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.currentScope = LocalScope(self.currentScope)
 
     def exitBlock(self, ctx:CompiwaveParser.BlockContext):
-        s = "{}: {}".format(self.currentScope.getScopeName() ,self.currentScope)
+        s = "{}: {}".format(self.currentScope.enclosingScope.getScopeName(), self.currentScope)
         print(s)
         # print(self.currentScope.enclosingScope.getScopeName())
         self.currentScope = self.currentScope.enclosingScope

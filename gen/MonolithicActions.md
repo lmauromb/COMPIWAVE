@@ -24,5 +24,9 @@ with the other patterns.
 3. Reference x **==>** ref x starting in the current scope.
 4. End of file **==>** pop the GlobalScope.
 
+## Borrador
 
+1. Falta checar la semantica de las expresiones. Con esto, se evalua la correctez de cada estatuto.
+Validando que cada estatuto es semanticamente correcto YA es posible generar codigo intermedio.
+2. 
 
