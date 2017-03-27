@@ -1,19 +1,16 @@
 begin
 
     function int f(){
-        int i;
-        float ff;
+        int i = 2;
+        # return i;
     }
-
-    function int g(){}
 
     main
     {
-        int x;
-
-        if(x){
-            x = 2;
-        }
+        # int i = 0;
+        int y = 4;
+        int x = 2;
+        int z = y;
 
     }
 end

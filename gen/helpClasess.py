@@ -32,14 +32,15 @@ class MethodSymbol(Symbol):
         super(MethodSymbol, self).__init__(name, cwtype)
         self.enclosingScope = enclosingScope
         self.orderedArgs = OrderedDict()
+        self.enclosedScope = None
 
-    def resolve(self, sym):
-        s = self.orderedArgs.get(sym.name)
+    def resolve(self, name):
+        s = self.orderedArgs.get(name)
         if s is not None:
             return s
         # if not here, check any enclosing scope
         if self.enclosingScope is not None:
-            return self.enclosingScope.resolve(sym)
+            return self.enclosingScope.resolve(name)
         # not found
         return None
 
@@ -66,13 +67,13 @@ class BaseScope:
         self.enclosingScope = enclosingScope
         self.symbols = OrderedDict()
 
-    def resolve(self, sym):
-        s = self.symbols.get(sym.name)
+    def resolve(self, name):
+        s = self.symbols.get(name)
         if s is not None:
             return s
         # if not here, check any enclosing scope
         if self.enclosingScope is not None:
-            return self.enclosingScope.resolve(sym)
+            return self.enclosingScope.resolve(name)
         #not found
         return None
 
