@@ -1,6 +1,6 @@
 begin
 
-    function int f(){
+    function int f(int j){
         int i = 2;
         # return i;
     }
@@ -10,7 +10,7 @@ begin
         # int i = 0;
         int y = 4;
         int x = 2;
-        int z = y;
+        int z = f();
 
     }
 end
