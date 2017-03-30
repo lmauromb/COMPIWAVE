@@ -5,7 +5,7 @@ class CompiwaveBaseListener(CompiwaveListener):
     currentScope = None
     symbolTable = SymbolTable()
     cont = 0
-    contTemp = 't0'.encode('utf-8')
+    contTemp = 0
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
 
@@ -129,15 +129,16 @@ class CompiwaveBaseListener(CompiwaveListener):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
-        result = bytes([self.contTemp[0],self.contTemp[1]+1])
-
-        if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
-
-        if rightOp in self.diccionarioTemp:
-            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+        result =self.contTemp+1
 
         key = leftOp + operand + rightOp
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp]
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp]
+
 
         self.diccionarioTemp[key] = result
 
@@ -150,15 +151,15 @@ class CompiwaveBaseListener(CompiwaveListener):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
-        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
+        result =self.contTemp+1
 
         key = leftOp+operand+rightOp
 
         if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+            leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
-            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+            rightOp = self.diccionarioTemp[rightOp]
 
         self.diccionarioTemp[key] = result
 
@@ -172,15 +173,15 @@ class CompiwaveBaseListener(CompiwaveListener):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
-        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
-
-        if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
-
-        if rightOp in self.diccionarioTemp:
-            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+        result =self.contTemp+1
 
         key = leftOp + operand + rightOp
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp]
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp]
 
         self.diccionarioTemp[key] = result
 
@@ -193,15 +194,16 @@ class CompiwaveBaseListener(CompiwaveListener):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
-        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
-
-        if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
-
-        if rightOp in self.diccionarioTemp:
-            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+        result =self.contTemp+1
 
         key = leftOp + operand + rightOp
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp]
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp]
+
 
         self.diccionarioTemp[key] = result
 
@@ -214,15 +216,16 @@ class CompiwaveBaseListener(CompiwaveListener):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
-        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
-
-        if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
-
-        if rightOp in self.diccionarioTemp:
-            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+        result = self.contTemp+1
 
         key = leftOp + operand + rightOp
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp]
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp]
+
 
         self.diccionarioTemp[key] = result
 
@@ -234,12 +237,12 @@ class CompiwaveBaseListener(CompiwaveListener):
     def exitVar_assignment(self, ctx:CompiwaveParser.Var_assignmentContext):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(2).getText()
-        rightOp = " "
-        result = ctx.getChild(0).getText().encode('utf-8')
+        rightOp = "~"
+        result = ctx.getChild(0).getText()
 
 
         if leftOp in self.diccionarioTemp:
-            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+            leftOp = self.diccionarioTemp[leftOp]
 
         # key = leftOp + operand + rightOp
         #
