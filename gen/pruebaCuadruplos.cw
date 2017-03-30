@@ -8,7 +8,7 @@ begin
 
         if (a+b > d)
         {
-            if (a<b)
+            if (a<b && 2 + 1 != (4+5) / 2)
             {
                 a = 0;
                 b = b + d;

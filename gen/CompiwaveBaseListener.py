@@ -5,7 +5,7 @@ class CompiwaveBaseListener(CompiwaveListener):
     currentScope = None
     symbolTable = SymbolTable()
     cont = 0
-    contTemp = 0
+    contTemp = 8000
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
 
