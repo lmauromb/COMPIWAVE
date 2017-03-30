@@ -1,14 +1,14 @@
 begin
     main
     {
-        int a;
-        int b;
-        int c;
-        int d;
+        int a = 0;
+        int b = 1;
+        int c = 2;
+        int d = 3;
 
         if (a+b > d)
         {
-            if (a<b && 2 + 1 != (4+5) / 2)
+            if (a<b)
             {
                 a = 0;
                 b = b + d;

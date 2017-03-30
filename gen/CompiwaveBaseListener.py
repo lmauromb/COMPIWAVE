@@ -264,3 +264,21 @@ class CompiwaveBaseListener(CompiwaveListener):
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
+
+    def exitVar_declaration(self, ctx:CompiwaveParser.Var_declarationContext):
+
+        if ctx.ASSIGN() is None:
+            pass
+
+        else:
+            result = ctx.ID().getText()
+            operand = ctx.ASSIGN().getText()
+            leftOp = ctx.expr().getText()
+            rightOp = "~"
+
+            if leftOp in self.diccionarioTemp:
+                leftOp = self.diccionarioTemp[leftOp]
+
+            quadruple = Quadruple(operand, leftOp, rightOp, result)
+            self.listaInstrucciones.append(quadruple)
+            self.cont += 1
