@@ -125,6 +125,19 @@ class CompiwaveBaseListener(CompiwaveListener):
 
     # Generacion de Cuadruplos
 
+
+    def exitParen(self, ctx:CompiwaveParser.ParenContext):
+        leftParen = ctx.getChild(0).getText()
+        expr = ctx.getChild(1).getText()
+        rightParen = ctx.getChild(2).getText()
+
+        key = leftParen + expr + rightParen
+
+        if expr in self.diccionarioTemp:
+            self.diccionarioTemp[key] = self.diccionarioTemp[expr]
+
+
+
     def exitMultDiv(self, ctx:CompiwaveParser.MultDivContext):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
