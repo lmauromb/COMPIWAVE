@@ -118,3 +118,16 @@ class SymbolTable():
         return self.globals.__str__()
 
     __repr__ = __str__
+
+
+class Quadruple():
+    def __init__(self, operand, leftOp, rightOp, result):
+        self.operand = operand.encode('utf-8')
+        self.leftOp = leftOp.encode('utf-8')
+        self.rightOp = rightOp.encode('utf-8')
+        self. result = result
+
+    def __str__(self):
+        return "{} {} {} {}".format(
+            self.operand.decode("utf-8"), self.leftOp.decode("utf-8"),
+            self.rightOp.decode("utf-8"), self.result.decode("utf-8"))

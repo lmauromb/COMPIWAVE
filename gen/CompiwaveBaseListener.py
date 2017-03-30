@@ -5,20 +5,25 @@ class CompiwaveBaseListener(CompiwaveListener):
     currentScope = None
     symbolTable = SymbolTable()
     cont = 0
+    contTemp = 't0'.encode('utf-8')
+    diccionarioTemp = OrderedDict()
+    listaInstrucciones = []
 
     def enterCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         self.currentScope = GlobalScope()
         self.symbolTable.globals = self.currentScope
+        self.cont += 1
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         # print(self.symbolTable)
-        # print("cont: {}".format(self.cont))
+        print("cont: {}".format(self.cont))
+        print("\n".join(str(i) for i in self.listaInstrucciones))
         pass
 
     def enterBlock(self, ctx:CompiwaveParser.BlockContext):
         self.currentScope = LocalScope(self.currentScope)
         # print("cont: {}".format(self.cont))
-        self.cont += 1
+        # self.cont += 1
 
     def exitBlock(self, ctx:CompiwaveParser.BlockContext):
         s = "{}: {}".format(self.currentScope.enclosingScope.getScopeName(), self.currentScope)
@@ -118,14 +123,128 @@ class CompiwaveBaseListener(CompiwaveListener):
         # for val in functionArguments:
         #     print(val.cwtype)
 
-    def enterIntConst(self, ctx:CompiwaveParser.IntConstContext):
-        # print(ctx.getText()
-        pass
+    # Generacion de Cuadruplos
 
-    def enterMultDiv(self, ctx:CompiwaveParser.MultDivContext):
-        print(ctx.getChild(2).getText())
-        # pass
+    def exitMultDiv(self, ctx:CompiwaveParser.MultDivContext):
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(0).getText()
+        rightOp = ctx.getChild(2).getText()
+        result = bytes([self.contTemp[0],self.contTemp[1]+1])
 
-    # Aqui se hace el cuadruplo
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+
+        key = leftOp + operand + rightOp
+
+        self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+    def exitAddSub(self, ctx:CompiwaveParser.AddSubContext):
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(0).getText()
+        rightOp = ctx.getChild(2).getText()
+        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
+
+        key = leftOp+operand+rightOp
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+
+        self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+
+    def exitLTGT(self, ctx:CompiwaveParser.LTGTContext):
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(0).getText()
+        rightOp = ctx.getChild(2).getText()
+        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+
+        key = leftOp + operand + rightOp
+
+        self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+    def exitEqualityNot(self, ctx:CompiwaveParser.EqualityNotContext):
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(0).getText()
+        rightOp = ctx.getChild(2).getText()
+        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+
+        key = leftOp + operand + rightOp
+
+        self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+    def exitAndOr(self, ctx:CompiwaveParser.AndOrContext):
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(0).getText()
+        rightOp = ctx.getChild(2).getText()
+        result = bytes([self.contTemp[0], self.contTemp[1] + 1])
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        if rightOp in self.diccionarioTemp:
+            rightOp = self.diccionarioTemp[rightOp].decode("utf-8")
+
+        key = leftOp + operand + rightOp
+
+        self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
     def exitVar_assignment(self, ctx:CompiwaveParser.Var_assignmentContext):
-        print(ctx.expr().getText())
+        operand = ctx.getChild(1).getText()
+        leftOp = ctx.getChild(2).getText()
+        rightOp = " "
+        result = ctx.getChild(0).getText().encode('utf-8')
+
+
+        if leftOp in self.diccionarioTemp:
+            leftOp = self.diccionarioTemp[leftOp].decode("utf-8")
+
+        # key = leftOp + operand + rightOp
+        #
+        # self.diccionarioTemp[key] = result
+
+        quadruple = Quadruple(operand, leftOp, rightOp, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
