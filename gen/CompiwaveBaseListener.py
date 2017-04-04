@@ -5,7 +5,7 @@ class CompiwaveBaseListener(CompiwaveListener):
     currentScope = None
     symbolTable = SymbolTable()
     cont = 0
-    contTemp = 8000
+    contTemp = 8000 # todas las variables temporales inician en 8000
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
 
@@ -123,8 +123,20 @@ class CompiwaveBaseListener(CompiwaveListener):
         # for val in functionArguments:
         #     print(val.cwtype)
 
-    # Generacion de Cuadruplos
+    # /////////////////////////////////////////////////////
+    # ////////// GENERACION DE CUADRUPLOS /////////////////
+    # /////////////////////////////////////////////////////
 
+
+    # CUADRUPLOS ARITMETICOS
+    # Parentesis
+    # Multiplicacion, Division
+    # Suma, Resta
+    # Mayor que, Menor que, Mayor o igual, Menor o igual
+    # Igual a, Diferente de
+    # And, Or
+    # Asignacion
+    # Asignacion en declaracion
 
     def exitParen(self, ctx:CompiwaveParser.ParenContext):
         leftParen = ctx.getChild(0).getText()
@@ -253,13 +265,8 @@ class CompiwaveBaseListener(CompiwaveListener):
         rightOp = "~"
         result = ctx.getChild(0).getText()
 
-
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
-
-        # key = leftOp + operand + rightOp
-        #
-        # self.diccionarioTemp[key] = result
 
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
@@ -282,3 +289,8 @@ class CompiwaveBaseListener(CompiwaveListener):
             quadruple = Quadruple(operand, leftOp, rightOp, result)
             self.listaInstrucciones.append(quadruple)
             self.cont += 1
+
+    # CUADRUPLOS CONDICIONALES
+    # If else
+    # While, Do while
+
