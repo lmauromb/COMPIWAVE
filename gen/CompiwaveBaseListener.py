@@ -2,6 +2,23 @@ from CompiwaveListener import *
 from helpClasess import *
 
 class CompiwaveBaseListener(CompiwaveListener):
+    """Grammar rules listener
+    
+    Clase para caminar por el AST y realizar acciones correspondientes.
+    
+    Variables de clase:
+        currentScope: Muestra cual es el Scope actual al entrar a la regla.
+        symbolTable: Table de Simbolos, globals muestra el arbol de scopes.
+        cont: Contador para los cuadruplos.
+        contTemp: Muestra la direccion en donde comienzan los valores
+            temporales de los cuadruplos.
+        diccionarioTemp: Diccionario para guardar la relacion de valores
+            temporales con su operacion correpondiente.
+                Ej. A+2 puede ser 8001
+        listaIntrucciones: Lista que contiene los cuadruplos generados.
+    
+    """
+
     currentScope = None
     symbolTable = SymbolTable()
     cont = 0
@@ -10,6 +27,18 @@ class CompiwaveBaseListener(CompiwaveListener):
     listaInstrucciones = []
 
     def enterCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
+        """Se entra al programa de forma topdown.
+        
+        Se entra a la regla Compiwave, que define el programa completo,
+        y se inicializan las variables de clase.
+        
+        :param ctx: 
+            Contexto del programa, contiene todas las demas relgas.
+        :return: 
+            Se asigna el currentScope como Global y se liga a la 
+            tabla de simbolos.
+            El contador se le suma 1, los cuadruplos inician en 1.
+        """
         self.currentScope = GlobalScope()
         self.symbolTable.globals = self.currentScope
         self.cont += 1
