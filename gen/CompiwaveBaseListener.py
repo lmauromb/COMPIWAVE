@@ -134,13 +134,15 @@ class CompiwaveBaseListener(CompiwaveListener):
         functionCalled = self.symbolTable.globals.resolve(
             ctx.function_statement().ID().getText()
         )
-        if functionCalled is not None:
-            print(functionCalled.cwtype)
+
+        if functionCalled is None:
+            raise Exception("Function {} is not defined".format(functionCalled))
 
     def enterFunction_statement(self, ctx:CompiwaveParser.Function_statementContext):
         functionName = ctx.ID().getText()
+
         if self.symbolTable.globals.resolve(functionName) is None:
-            raise Exception("Funcion {} is not defined".format(functionName))
+            raise Exception("Function {} is not defined".format(functionName))
 
 
         # Checar Argumentos
