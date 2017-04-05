@@ -8,7 +8,7 @@ begin
              a = 3;
            }
            a =  2;
-        } while (4 * 2 + 1 > 0)
+        } while (4 * 2 + 1 > 0);
         a = 4;
     }
 end

@@ -88,7 +88,7 @@ while_statement
     ;
 
 do_while_statement
-    : 'do' block 'while' '(' do_if_expr ')'
+    : 'do' block 'while' '(' do_if_expr ')' ';'
     ;
 
 if_expr
