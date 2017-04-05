@@ -173,14 +173,11 @@ class CompiwaveBaseListener(CompiwaveListener):
         if expr in self.diccionarioTemp:
             self.diccionarioTemp[key] = self.diccionarioTemp[expr]
 
-
-
     def exitMultDiv(self, ctx:CompiwaveParser.MultDivContext):
         operand = ctx.getChild(1).getText()
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
-
         key = leftOp + operand + rightOp
 
         if leftOp in self.diccionarioTemp:
@@ -213,7 +210,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
-
 
     def exitLTGT(self, ctx:CompiwaveParser.LTGTContext):
         operand = ctx.getChild(1).getText()
@@ -304,15 +300,15 @@ class CompiwaveBaseListener(CompiwaveListener):
     # CUADRUPLOS CONDICIONALES
     # If else
     # While, Do while
+
     def exitIf_expr(self, ctx:CompiwaveParser.If_statementContext):
         self.pilaSaltos.append(self.cont)
         quadruple = Quadruple('~', '~', '~', '~')
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
 
-
     def exitIf_statement(self, ctx:CompiwaveParser.If_statementContext):
-        if ctx.else_statement() is None:
+        if ctx.else_statement() is None: # Caso sin else
             current = self.pilaSaltos.pop() - 1
             result = ctx.if_expr().getText()
 
@@ -332,7 +328,6 @@ class CompiwaveBaseListener(CompiwaveListener):
             quadruple = Quadruple('GotoF', result, '~', end)
             self.listaInstrucciones[current] = quadruple
 
-
     def enterElse_statement(self, ctx:CompiwaveParser.Else_statementContext):
         self.pilaSaltos.append(self.cont+1) # valor del GotoF
         self.pilaSaltos.append(self.cont) # valor del Goto
@@ -344,3 +339,35 @@ class CompiwaveBaseListener(CompiwaveListener):
         current = self.pilaSaltos.pop() - 1
         quadruple = Quadruple('Goto', '~', '~', self.cont)
         self.listaInstrucciones[current] = quadruple
+
+    def enterWhile_statement(self, ctx:CompiwaveParser.While_statementContext):
+        self.pilaSaltos.append(self.cont) # valor del Goto
+
+    def exitWhile_statement(self, ctx:CompiwaveParser.While_statementContext):
+        current = self.pilaSaltos.pop() - 1
+        return_while = self.pilaSaltos.pop() # a donde quiero regresar
+        result = ctx.if_expr().getText()
+
+        if result in self.diccionarioTemp:
+            result = self.diccionarioTemp[result]
+
+        quadruple = Quadruple('GotoF', result, '~', self.cont+1)
+        self.listaInstrucciones[current] = quadruple
+        # Regreso
+        quadruple = Quadruple('Goto', '~', '~', return_while)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+    def enterDo_while_statement(self, ctx:CompiwaveParser.Do_while_statementContext):
+        self.pilaSaltos.append(self.cont)
+
+    def exitDo_while_statement(self, ctx:CompiwaveParser.Do_while_statementContext):
+        return_do = self.pilaSaltos.pop()
+        result = ctx.do_if_expr().getText()
+
+        if result in self.diccionarioTemp:
+            result = self.diccionarioTemp[result]
+
+        quadruple = Quadruple('GotoT', result, '~', return_do)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1

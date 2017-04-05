@@ -3,11 +3,12 @@ begin
     {
         int a;
 
-        if (4 > 0){
+        do {
            if(1 + 2 > 1){
              a = 3;
            }
            a =  2;
-        }
+        } while (4 * 2 + 1 > 0)
+        a = 4;
     }
 end
