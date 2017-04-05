@@ -25,6 +25,7 @@ class CompiwaveBaseListener(CompiwaveListener):
     contTemp = 8000 # todas las variables temporales inician en 8000
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
+    pilaSaltos = []
 
     def enterCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         """Se entra al programa de forma topdown.
@@ -76,6 +77,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print(s)
         returnType = t
         ms = MethodSymbol(ctx.ID().getText(), returnType, self.currentScope)
+
         if self.currentScope.resolve(ms.name) is None:
             self.currentScope.define(ms)
             self.currentScope = ms
@@ -88,7 +90,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print("{} : {}".format(self.currentScope.getScopeName(), self.currentScope.enclosedScope))
         self.currentScope = self.currentScope.enclosingScope
 
-
     def enterMain_function(self, ctx:CompiwaveParser.Main_functionContext):
         ms = MethodSymbol("main", "void", self.currentScope)
         self.currentScope.define(ms)
@@ -98,11 +99,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print("{} : {}".format(self.currentScope.getScopeName(), self.currentScope.enclosedScope))
         self.currentScope = self.currentScope.enclosingScope
 
-
     def enterFunction_param(self, ctx:CompiwaveParser.Function_paramContext):
         vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
         self.currentScope.define(vs)
-
 
     def enterVar_declaration(self, ctx:CompiwaveParser.Var_declarationContext):
         s = "def var: {} as type {}".format(ctx.ID().getText(),
@@ -114,14 +113,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 
-
     def enterList_declaration(self, ctx:CompiwaveParser.List_declarationContext):
         vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
         if self.currentScope.resolve(vs.name) is None:
             self.currentScope.define(vs)
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
-
 
     # Semantics
 
@@ -171,7 +168,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         leftParen = ctx.getChild(0).getText()
         expr = ctx.getChild(1).getText()
         rightParen = ctx.getChild(2).getText()
-
         key = leftParen + expr + rightParen
 
         if expr in self.diccionarioTemp:
@@ -193,9 +189,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
 
-
         self.diccionarioTemp[key] = result
-
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -206,7 +200,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
-
         key = leftOp+operand+rightOp
 
         if leftOp in self.diccionarioTemp:
@@ -216,7 +209,6 @@ class CompiwaveBaseListener(CompiwaveListener):
             rightOp = self.diccionarioTemp[rightOp]
 
         self.diccionarioTemp[key] = result
-
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -228,7 +220,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
-
         key = leftOp + operand + rightOp
 
         if leftOp in self.diccionarioTemp:
@@ -238,7 +229,6 @@ class CompiwaveBaseListener(CompiwaveListener):
             rightOp = self.diccionarioTemp[rightOp]
 
         self.diccionarioTemp[key] = result
-
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -249,7 +239,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
-
         key = leftOp + operand + rightOp
 
         if leftOp in self.diccionarioTemp:
@@ -258,9 +247,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
 
-
         self.diccionarioTemp[key] = result
-
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -271,7 +258,6 @@ class CompiwaveBaseListener(CompiwaveListener):
         leftOp = ctx.getChild(0).getText()
         rightOp = ctx.getChild(2).getText()
         result = self.contTemp+1
-
         key = leftOp + operand + rightOp
 
         if leftOp in self.diccionarioTemp:
@@ -280,9 +266,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
 
-
         self.diccionarioTemp[key] = result
-
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -302,10 +286,8 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
     def exitVar_declaration(self, ctx:CompiwaveParser.Var_declarationContext):
-
         if ctx.ASSIGN() is None:
             pass
-
         else:
             result = ctx.ID().getText()
             operand = ctx.ASSIGN().getText()
@@ -322,4 +304,43 @@ class CompiwaveBaseListener(CompiwaveListener):
     # CUADRUPLOS CONDICIONALES
     # If else
     # While, Do while
+    def exitIf_expr(self, ctx:CompiwaveParser.If_statementContext):
+        self.pilaSaltos.append(self.cont)
+        quadruple = Quadruple('~', '~', '~', '~')
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
 
+
+    def exitIf_statement(self, ctx:CompiwaveParser.If_statementContext):
+        if ctx.else_statement() is None:
+            current = self.pilaSaltos.pop() - 1
+            result = ctx.if_expr().getText()
+
+            if result in self.diccionarioTemp:
+                result = self.diccionarioTemp[result]
+
+            quadruple = Quadruple('GotoF', result, '~', self.cont)
+            self.listaInstrucciones[current] = quadruple
+        else:
+            end = self.pilaSaltos.pop()
+            current = self.pilaSaltos.pop() - 1
+            result = ctx.if_expr().getText()
+
+            if result in self.diccionarioTemp:
+                result = self.diccionarioTemp[result]
+
+            quadruple = Quadruple('GotoF', result, '~', end)
+            self.listaInstrucciones[current] = quadruple
+
+
+    def enterElse_statement(self, ctx:CompiwaveParser.Else_statementContext):
+        self.pilaSaltos.append(self.cont+1) # valor del GotoF
+        self.pilaSaltos.append(self.cont) # valor del Goto
+        quadruple = Quadruple('*', '*', '*', '*')
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+    def exitElse_statement(self, ctx:CompiwaveParser.Else_statementContext):
+        current = self.pilaSaltos.pop() - 1
+        quadruple = Quadruple('Goto', '~', '~', self.cont)
+        self.listaInstrucciones[current] = quadruple
