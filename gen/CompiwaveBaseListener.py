@@ -21,7 +21,7 @@ class CompiwaveBaseListener(CompiwaveListener):
 
     currentScope = None
     symbolTable = SymbolTable()
-    cont = 0
+    cont = 1
     contTemp = 8000 # todas las variables temporales inician en 8000
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
@@ -42,6 +42,8 @@ class CompiwaveBaseListener(CompiwaveListener):
         """
         self.currentScope = GlobalScope()
         self.symbolTable.globals = self.currentScope
+        quadruple = Quadruple('Goto', '~', '~', '~')
+        self.listaInstrucciones.append(quadruple)
         self.cont += 1
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
@@ -77,6 +79,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print(s)
         returnType = t
         ms = MethodSymbol(ctx.ID().getText(), returnType, self.currentScope)
+        self.contTemp = 8000
 
         if self.currentScope.resolve(ms.name) is None:
             self.currentScope.define(ms)
@@ -90,10 +93,17 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print("{} : {}".format(self.currentScope.getScopeName(), self.currentScope.enclosedScope))
         self.currentScope = self.currentScope.enclosingScope
 
+        # Cuadruplos
+        quadruple = Quadruple('EndFunc', '~', '~', '~')
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
     def enterMain_function(self, ctx:CompiwaveParser.Main_functionContext):
         ms = MethodSymbol("main", "void", self.currentScope)
         self.currentScope.define(ms)
         self.currentScope = ms
+        self.contTemp = 8000
+        self.listaInstrucciones[0].result = self.cont
 
     def exitMain_function(self, ctx:CompiwaveParser.Main_functionContext):
         # print("{} : {}".format(self.currentScope.getScopeName(), self.currentScope.enclosedScope))
@@ -371,5 +381,18 @@ class CompiwaveBaseListener(CompiwaveListener):
             result = self.diccionarioTemp[result]
 
         quadruple = Quadruple('GotoT', result, '~', return_do)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+    # Cuadruplos de Funciones
+    # En exitFunction_declaration se genera el que termina la funcion
+
+    def exitReturn_statement(self, ctx:CompiwaveParser.Return_statementContext):
+        result = ctx.expr().getText()
+
+        if result in self.diccionarioTemp:
+            result = self.diccionarioTemp[result]
+
+        quadruple = Quadruple('Return', '~', '~', result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
