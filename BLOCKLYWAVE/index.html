@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ＣＯＭＰＩＷＡＶＥ编译器</title>
+  <link rel="icon" href="http://seeklogo.com/images/C/carta-blanca-cerveza-logo-3ED85F6D67-seeklogo.com.png">
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="javascript_compressed.js"></script>
+  <script src="msg/js/en.js"></script>
+  <script src="compiwaveBlocks.js"></script>
+  <script src="FileSaver.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+      text-align: center;
+    }
+    #blocklyDiv {
+      float: left;
+      height: 480px;
+      width: 600px;
+      margin-left: 100px;
+    }
+
+    #codeDisplay {
+      float: right;
+      margin-right: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>ＣＯＭＰＩＷＡＶＥ编译器</h1>
+
+  <p>
+    <button onclick="showCode()">Show C O D E 码</button>
+    <button onclick="saveFile()">Save F I L E 文件</button>
+  </p>
+
+  <div id="blocklyDiv"></div>
+
+  <div id="codeDisplay">
+      <textarea id="textCode" style="width: 332px; height: 475px"
+        readonly=""></textarea>
+  </div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Logic">
+    <block type="lessthan"></block>
+    <block type="morethan"></block>
+    <block type="equals"></block>
+    <block type="lessequals"></block>
+    <block type="moreequals"></block>
+    <block type="notequals"></block>
+    <block type="and"></block>
+    <block type="or"></block>
+  </category>
+  <category name="Condition">
+    <block type="if"></block>
+    <block type="ifelse"></block>
+  </category>
+  <category name="Loops">
+    <block type="while"></block>
+    <block type="do"></block>
+  </category>
+  <category name="Functions">
+    <block type="main"></block>
+    <block type="function">
+      <field name="functionType">int</field>
+      <field name="NAME"></field>
+    </block>
+    <block type="functioncall">
+      <field name="name"></field>
+    </block>
+    <block type="return">
+      <field name="return"></field>
+    </block>
+    <block type="parameter">
+      <field name="paramType">int</field>
+      <field name="paramVar"></field>
+    </block>
+    <block type="paramcall">
+      <field name="value"></field>
+    </block>
+  </category>
+  <category name="Input">
+    <block type="string">
+      <field name="stnInput"></field>
+    </block>
+    <block type="variable">
+      <field name="value"></field>
+    </block>
+    <block type="int">
+      <field name="intInput">0</field>
+    </block>
+    <block type="float">
+      <field name="fltInput">0</field>
+    </block>
+    <block type="boolean">
+      <field name="blnInput">true</field>
+    </block>
+  </category>
+  <category name="Math">
+    <block type="sum"></block>
+    <block type="substract"></block>
+    <block type="multiply"></block>
+    <block type="divide"></block>
+    <block type="parentesis"></block>
+  </category>
+  <category name="Declaration">
+    <block type="declaration">
+      <field name="type">int</field>
+      <field name="variable"></field>
+    </block>
+  </category>
+  <category name="Assignment">
+    <block type="varassign">
+      <field name="name"></field>
+    </block>
+  </category>
+  <category name="Special">
+    <block type="comment"></block>
+    <block type="print"></block>
+    <block type="break"></block>
+  </category>
+  </xml>
+
+  <script>
+    var workspace = Blockly.inject('blocklyDiv',
+        {media: 'media/',
+         toolbox: document.getElementById('toolbox')});
+
+    function showCode(){
+      //Generate code and display it
+
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      code = code.replace(/[¿]/g,'(');
+      code = code.replace(/[?]/g,')');
+      code = 'begin\n\n' + code + '\nend';
+      document.getElementById("textCode").value = code;
+      //alert(code);
+    }
+
+    function saveFile(){
+      //Generate code and display it
+
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      code = code.replace(/[¿]/g,'(');
+      code = code.replace(/[?]/g,')');
+      code = 'begin\n\n' + code + '\nend';
+      var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, "fileWave.py");
+      //alert(code);
+    }
+
+  </script>
+
+</body>
+</html>
