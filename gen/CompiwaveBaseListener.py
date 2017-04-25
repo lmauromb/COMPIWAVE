@@ -125,9 +125,9 @@ class CompiwaveBaseListener(CompiwaveListener):
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 
     def enterList_declaration(self, ctx:CompiwaveParser.List_declarationContext):
-        vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
-        if self.currentScope.resolve(vs.name) is None:
-            self.currentScope.define(vs)
+        ls = ListSymbol(ctx.ID().getText(), ctx.cwtype().getText())
+        if self.currentScope.resolve(ls.name) is None:
+            self.currentScope.define(ls)
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 

@@ -26,6 +26,32 @@ class VariableSymbol(Symbol):
 
     __repr__ = __str__
 
+class ListSymbol(Symbol):
+    def __init__(self, name, cwtype):
+        super(ListSymbol, self).__init__(name, cwtype)
+        self.m0 = 0
+        self.m1 = 0
+        self.limInf = 1
+        self._limSup = 1
+        self.sum = 0
+        self.k = 0
+
+    @property
+    def limSup(self):
+        return self._limSup
+
+    @limSup.setter
+    def limSup(self, limSup):
+        self._limSup = limSup
+        self.m0 = 1 * (self._limSup - self.limInf + 1)
+        self.m1 = int(self.m0 / (self._limSup - self.limInf + 1))
+        self.sum = self.m1 * self.limInf
+        self.k = -self.sum
+
+    def __str__(self):
+        return '<{name}:{cwtype}>'.format(name=self.name, cwtype=self.cwtype)
+
+    __repr__ = __str__
 
 class MethodSymbol(Symbol):
     def __init__(self, name, cwtype, enclosingScope):
