@@ -81,6 +81,48 @@ class VectorSymbol(Symbol):
 
     __repr__ = __str__
 
+class MatrixSymbol(Symbol):
+    def __init__(self, name, cwtype):
+        super(MatrixSymbol, self).__init__(name, cwtype)
+        self.r = 0
+        self.m0 = 0
+        self.m1 = 0
+        self.m2 = 0
+        self.limInf1 = 0
+        self._limSup1 = 0
+        self.limInf2 = 0
+        self._limSup2 = 0
+        self.sum = 0
+        self.k = 0
+        self.dirBase = 6000
+
+    @property
+    def limSup1(self):
+        return self._limSup1
+
+    @limSup1.setter
+    def limSup1(self, limSup1):
+        self._limSup1 = limSup1-1
+        self.r = 1 * (self._limSup1 - self.limInf1 + 1)
+
+    @property
+    def limSup2(self):
+        return self._limSup2
+
+    @limSup2.setter
+    def limSup2(self, limSup2):
+        self._limSup2 = limSup2-1
+        self.m0 = self.r * (self._limSup2 - self.limInf2 + 1)
+        self.m1 = int(self.m0 / (self._limSup1 - self.limInf1 + 1))
+        self.m2 = int(self.m1 / (self._limSup2 - self.limInf2 + 1))
+        self.sum  = self.m1 * self.limInf1 + self.m2 * self.limInf2
+        self.k = -self.sum
+
+    def __str__(self):
+        return '<{name}:{cwtype}>'.format(name=self.name, cwtype=self.cwtype)
+
+    __repr__ = __str__
+
 class MethodSymbol(Symbol):
     def __init__(self, name, cwtype, enclosingScope):
         super(MethodSymbol, self).__init__(name, cwtype)
