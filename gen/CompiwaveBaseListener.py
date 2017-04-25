@@ -564,13 +564,19 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", result-1, matrix_index2, result)
+        quadruple = Quadruple("+", self.contTemp, matrix_index2, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", result-1, current_matrix.k, result)
+        quadruple = Quadruple("+", self.contTemp, current_matrix.k, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp + 1
+        quadruple = Quadruple("+", self.contTemp, current_matrix.dirBase, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -584,3 +590,54 @@ class CompiwaveBaseListener(CompiwaveListener):
         quadruple = Quadruple("=", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
+
+    # Matrices como expresiones
+
+    def exitMatrixIndex(self, ctx:CompiwaveParser.MatrixIndexContext):
+        matrix_name = ctx.ID().getText()
+        matrix_index1 = ctx.expr(0).getText()
+        matrix_index2 = ctx.expr(1).getText()
+
+        if matrix_index1 in self.diccionarioTemp:
+            matrix_index1 = self.diccionarioTemp[matrix_index1]
+
+        if matrix_index2 in self.diccionarioTemp:
+            matrix_index2 = self.diccionarioTemp[matrix_index2]
+
+        current_matrix = self.currentScope.resolve(matrix_name)
+
+        # Indice 1
+        quadruple = Quadruple("VER", matrix_index1, current_matrix.limInf1, current_matrix.limSup1)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp + 1
+        quadruple = Quadruple("*", matrix_index1, current_matrix.m1, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        # Indice 2
+        quadruple = Quadruple("VER", matrix_index2, current_matrix.limInf2, current_matrix.limSup2)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp + 1
+        quadruple = Quadruple("+", self.contTemp, matrix_index2, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp + 1
+        quadruple = Quadruple("+", self.contTemp, current_matrix.k, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp + 1
+        quadruple = Quadruple("+", self.contTemp, current_matrix.dirBase, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        self.diccionarioTemp[ctx.getText()] = result
