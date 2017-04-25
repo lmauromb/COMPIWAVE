@@ -13,7 +13,7 @@ begin
 
     function int dos(int b){
         b = b * i + j;
-        return(b * 2);
+        return b * 2;
     }
 
     main
