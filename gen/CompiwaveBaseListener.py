@@ -131,6 +131,15 @@ class CompiwaveBaseListener(CompiwaveListener):
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 
+    def enterVector_declaration(self, ctx:CompiwaveParser.Vector_declarationContext):
+        vs = VectorSymbol(ctx.ID().getText(), ctx.cwtype().getText())
+        vs.limSup = int(ctx.expr().getText())
+
+        if self.currentScope.resolve(vs.name) is None:
+            self.currentScope.define(vs)
+        else:
+            raise Exception("Name {} already used".format(ctx.ID().getText()))
+
     # Semantics
 
     # Checar que la variable exista
@@ -442,3 +451,71 @@ class CompiwaveBaseListener(CompiwaveListener):
         quadruple = Quadruple('PRINT', '~', '~', result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
+
+    # Cuadruplos de Vectores
+
+    # Asignacion de Vectores
+    def exitVector_assignment(self, ctx:CompiwaveParser.Vector_assignmentContext):
+
+        # Cuadruplos para las casillas de un Vector
+        vector_index = ctx.expr(0).getText()
+        vector_name = ctx.ID().getText()
+
+        if vector_index in self.diccionarioTemp:
+            vector_index = self.diccionarioTemp[vector_index]
+
+        current_vector = self.currentScope.resolve(vector_name)
+
+        quadruple = Quadruple("VER", vector_index, current_vector.limInf, current_vector.limSup)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", vector_index, current_vector.k, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", self.contTemp, current_vector.dirBase, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        # Cuadruplo de la asignacion
+        expr = ctx.expr(1).getText()
+
+        if expr in self.diccionarioTemp:
+            expr = self.diccionarioTemp[expr]
+
+        quadruple = Quadruple("=", expr, "~", result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+    # Vectores como expresiones
+    def exitVectorIndex(self, ctx:CompiwaveParser.VectorIndexContext):
+        vector_index = ctx.expr().getText()
+        vector_name = ctx.ID().getText()
+
+        if vector_index in self.diccionarioTemp:
+            vector_index = self.diccionarioTemp[vector_index]
+
+        current_vector = self.currentScope.resolve(vector_name)
+
+        quadruple = Quadruple("VER", vector_index, current_vector.limInf, current_vector.limSup)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", vector_index, current_vector.k, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", self.contTemp, current_vector.dirBase, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        self.diccionarioTemp[ctx.getText()] = result
