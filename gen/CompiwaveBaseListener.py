@@ -140,6 +140,16 @@ class CompiwaveBaseListener(CompiwaveListener):
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 
+    def enterMatrix_declaration(self, ctx:CompiwaveParser.Matrix_declarationContext):
+        ms = MatrixSymbol(ctx.ID().getText(), ctx.cwtype().getText())
+        ms.limSup1 = int(ctx.expr(0).getText())
+        ms.limSup2 = int(ctx.expr(1).getText())
+
+        if self.currentScope.resolve(ms.name) is None:
+            self.currentScope.define(ms)
+        else:
+            raise Exception("Name {} already used".format(ctx.ID().getText()))
+
     # Semantics
 
     # Checar que la variable exista
@@ -519,3 +529,58 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.contTemp = result
 
         self.diccionarioTemp[ctx.getText()] = result
+
+    # Cuadruplos de Matrices
+
+    # Asignacion de Matrices
+    def exitMatrix_assignment(self, ctx:CompiwaveParser.Matrix_assignmentContext):
+
+        matrix_name = ctx.ID().getText()
+        matrix_index1 = ctx.expr(0).getText()
+        matrix_index2 = ctx.expr(1).getText()
+
+        if matrix_index1 in self.diccionarioTemp:
+            matrix_index1 = self.diccionarioTemp[matrix_index1]
+
+        if matrix_index2 in self.diccionarioTemp:
+            matrix_index2 = self.diccionarioTemp[matrix_index2]
+
+        current_matrix = self.currentScope.resolve(matrix_name)
+
+        # Indice 1
+        quadruple = Quadruple("VER", matrix_index1, current_matrix.limInf1, current_matrix.limSup1)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp+1
+        quadruple = Quadruple("*", matrix_index1, current_matrix.m1, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        #Indice 2
+        quadruple = Quadruple("VER", matrix_index2, current_matrix.limInf2, current_matrix.limSup2)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", result-1, matrix_index2, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        result = self.contTemp+1
+        quadruple = Quadruple("+", result-1, current_matrix.k, result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
+        self.contTemp = result
+
+        # Cuadruplo de la asignacion
+        expr = ctx.expr(2).getText()
+
+        if expr in self.diccionarioTemp:
+            expr = self.diccionarioTemp[expr]
+
+        quadruple = Quadruple("=", expr, "~", result)
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
