@@ -37,6 +37,26 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitList_declaration(CompiwaveParser.List_declarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link CompiwaveParser#vector_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVector_declaration(CompiwaveParser.Vector_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CompiwaveParser#vector_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVector_declaration(CompiwaveParser.Vector_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CompiwaveParser#matrix_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterMatrix_declaration(CompiwaveParser.Matrix_declarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CompiwaveParser#matrix_declaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitMatrix_declaration(CompiwaveParser.Matrix_declarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CompiwaveParser#function_declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -77,15 +97,25 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitCwtype(CompiwaveParser.CwtypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link CompiwaveParser#list_assignment}.
+	 * Enter a parse tree produced by {@link CompiwaveParser#vector_assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterList_assignment(CompiwaveParser.List_assignmentContext ctx);
+	void enterVector_assignment(CompiwaveParser.Vector_assignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link CompiwaveParser#list_assignment}.
+	 * Exit a parse tree produced by {@link CompiwaveParser#vector_assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitList_assignment(CompiwaveParser.List_assignmentContext ctx);
+	void exitVector_assignment(CompiwaveParser.Vector_assignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CompiwaveParser#matrix_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterMatrix_assignment(CompiwaveParser.Matrix_assignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CompiwaveParser#matrix_assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitMatrix_assignment(CompiwaveParser.Matrix_assignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link CompiwaveParser#list_push}.
 	 * @param ctx the parse tree
@@ -247,6 +277,18 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitPrint_statement(CompiwaveParser.Print_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code MatrixIndex}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMatrixIndex(CompiwaveParser.MatrixIndexContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MatrixIndex}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMatrixIndex(CompiwaveParser.MatrixIndexContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ListPop}
 	 * labeled alternative in {@link CompiwaveParser#expr}.
 	 * @param ctx the parse tree
@@ -307,6 +349,18 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 */
 	void exitIntConst(CompiwaveParser.IntConstContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code VectorIndex}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVectorIndex(CompiwaveParser.VectorIndexContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VectorIndex}
+	 * labeled alternative in {@link CompiwaveParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVectorIndex(CompiwaveParser.VectorIndexContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code FloatConst}
 	 * labeled alternative in {@link CompiwaveParser#expr}.
 	 * @param ctx the parse tree
@@ -366,18 +420,6 @@ public interface CompiwaveListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLTGT(CompiwaveParser.LTGTContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ListIndex}
-	 * labeled alternative in {@link CompiwaveParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterListIndex(CompiwaveParser.ListIndexContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ListIndex}
-	 * labeled alternative in {@link CompiwaveParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitListIndex(CompiwaveParser.ListIndexContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code FunctionCall}
 	 * labeled alternative in {@link CompiwaveParser#expr}.

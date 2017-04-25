@@ -1,8 +1,7 @@
 import sys
-from antlr4 import *
-from CompiwaveLexer import *
-from CompiwaveParser import *
+
 from CompiwaveBaseListener import *
+from CompiwaveLexer import *
 
 
 def main(argv):

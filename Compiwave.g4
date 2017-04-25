@@ -1,7 +1,7 @@
 grammar Compiwave;
 
 compiwave
-    : 'begin' (var_declaration|list_declaration|function_declaration)* main_function 'end'
+    : 'begin' (var_declaration|list_declaration|vector_declaration|matrix_declaration|function_declaration)* main_function 'end'
     ;
 
 var_declaration
@@ -10,6 +10,14 @@ var_declaration
 
 list_declaration
     : 'list' ID '(' cwtype ')' ';'
+    ;
+
+vector_declaration
+    : cwtype ID '[' expr ']' ';'
+    ;
+
+matrix_declaration
+    : cwtype ID '[' expr ']' '[' expr ']' ';'
     ;
 
 function_declaration
@@ -28,8 +36,12 @@ cwtype
     : T_FLOAT | T_INT | T_BOOL | T_STRING
     ;
 
-list_assignment
+vector_assignment
     : ID '[' expr ']' ASSIGN expr ';'
+    ;
+
+matrix_assignment
+    : ID '[' expr ']' '[' expr ']' ASSIGN expr ';'
     ;
 
 list_push
@@ -56,13 +68,16 @@ statement
     : block
     | var_declaration
     | list_declaration
+    | vector_declaration
+    | matrix_declaration
     | if_statement
     | while_statement
     | do_while_statement
     | return_statement
     | print_statement
     | var_assignment
-    | list_assignment
+    | vector_assignment
+    | matrix_assignment
     | list_push
     | list_pop ';'
     | function_statement ';'
@@ -109,7 +124,8 @@ print_statement
 
 expr
     : function_statement            #FunctionCall // get parent to use this expr node
-    | ID '[' expr ']'               #ListIndex
+    | ID '[' expr ']'               #VectorIndex
+    | ID '[' expr ']' '[' expr ']'  #MatrixIndex
     | list_pop                      #ListPop
     | ID                            #VarReference
     | INT                           #IntConst

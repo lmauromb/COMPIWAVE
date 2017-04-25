@@ -51,6 +51,30 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVector_declaration(CompiwaveParser.Vector_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVector_declaration(CompiwaveParser.Vector_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMatrix_declaration(CompiwaveParser.Matrix_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMatrix_declaration(CompiwaveParser.Matrix_declarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFunction_declaration(CompiwaveParser.Function_declarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -99,13 +123,25 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterList_assignment(CompiwaveParser.List_assignmentContext ctx) { }
+	@Override public void enterVector_assignment(CompiwaveParser.Vector_assignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitList_assignment(CompiwaveParser.List_assignmentContext ctx) { }
+	@Override public void exitVector_assignment(CompiwaveParser.Vector_assignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMatrix_assignment(CompiwaveParser.Matrix_assignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMatrix_assignment(CompiwaveParser.Matrix_assignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -303,6 +339,18 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMatrixIndex(CompiwaveParser.MatrixIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMatrixIndex(CompiwaveParser.MatrixIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterListPop(CompiwaveParser.ListPopContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -363,6 +411,18 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVectorIndex(CompiwaveParser.VectorIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVectorIndex(CompiwaveParser.VectorIndexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterFloatConst(CompiwaveParser.FloatConstContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -418,18 +478,6 @@ public class CompiwaveBaseListener implements CompiwaveListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLTGT(CompiwaveParser.LTGTContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterListIndex(CompiwaveParser.ListIndexContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitListIndex(CompiwaveParser.ListIndexContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

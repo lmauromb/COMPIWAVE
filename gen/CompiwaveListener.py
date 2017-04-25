@@ -35,6 +35,24 @@ class CompiwaveListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CompiwaveParser#vector_declaration.
+    def enterVector_declaration(self, ctx:CompiwaveParser.Vector_declarationContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#vector_declaration.
+    def exitVector_declaration(self, ctx:CompiwaveParser.Vector_declarationContext):
+        pass
+
+
+    # Enter a parse tree produced by CompiwaveParser#matrix_declaration.
+    def enterMatrix_declaration(self, ctx:CompiwaveParser.Matrix_declarationContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#matrix_declaration.
+    def exitMatrix_declaration(self, ctx:CompiwaveParser.Matrix_declarationContext):
+        pass
+
+
     # Enter a parse tree produced by CompiwaveParser#function_declaration.
     def enterFunction_declaration(self, ctx:CompiwaveParser.Function_declarationContext):
         pass
@@ -71,12 +89,21 @@ class CompiwaveListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by CompiwaveParser#list_assignment.
-    def enterList_assignment(self, ctx:CompiwaveParser.List_assignmentContext):
+    # Enter a parse tree produced by CompiwaveParser#vector_assignment.
+    def enterVector_assignment(self, ctx:CompiwaveParser.Vector_assignmentContext):
         pass
 
-    # Exit a parse tree produced by CompiwaveParser#list_assignment.
-    def exitList_assignment(self, ctx:CompiwaveParser.List_assignmentContext):
+    # Exit a parse tree produced by CompiwaveParser#vector_assignment.
+    def exitVector_assignment(self, ctx:CompiwaveParser.Vector_assignmentContext):
+        pass
+
+
+    # Enter a parse tree produced by CompiwaveParser#matrix_assignment.
+    def enterMatrix_assignment(self, ctx:CompiwaveParser.Matrix_assignmentContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#matrix_assignment.
+    def exitMatrix_assignment(self, ctx:CompiwaveParser.Matrix_assignmentContext):
         pass
 
 
@@ -224,6 +251,15 @@ class CompiwaveListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CompiwaveParser#MatrixIndex.
+    def enterMatrixIndex(self, ctx:CompiwaveParser.MatrixIndexContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#MatrixIndex.
+    def exitMatrixIndex(self, ctx:CompiwaveParser.MatrixIndexContext):
+        pass
+
+
     # Enter a parse tree produced by CompiwaveParser#ListPop.
     def enterListPop(self, ctx:CompiwaveParser.ListPopContext):
         pass
@@ -269,6 +305,15 @@ class CompiwaveListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CompiwaveParser#VectorIndex.
+    def enterVectorIndex(self, ctx:CompiwaveParser.VectorIndexContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#VectorIndex.
+    def exitVectorIndex(self, ctx:CompiwaveParser.VectorIndexContext):
+        pass
+
+
     # Enter a parse tree produced by CompiwaveParser#FloatConst.
     def enterFloatConst(self, ctx:CompiwaveParser.FloatConstContext):
         pass
@@ -311,15 +356,6 @@ class CompiwaveListener(ParseTreeListener):
 
     # Exit a parse tree produced by CompiwaveParser#LTGT.
     def exitLTGT(self, ctx:CompiwaveParser.LTGTContext):
-        pass
-
-
-    # Enter a parse tree produced by CompiwaveParser#ListIndex.
-    def enterListIndex(self, ctx:CompiwaveParser.ListIndexContext):
-        pass
-
-    # Exit a parse tree produced by CompiwaveParser#ListIndex.
-    def exitListIndex(self, ctx:CompiwaveParser.ListIndexContext):
         pass
 
 

@@ -1,5 +1,6 @@
 begin
     main {
+
         list listaEntera(int);
         listaEntera << 1;
         listaEntera << 2;
