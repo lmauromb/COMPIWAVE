@@ -5,6 +5,7 @@ class Symbol:
         self.name = name
         self.cwtype = cwtype
         self.scope = None
+        self.dirBase = 15000
 
 
 class BuiltInTypeSymbol(Symbol):
@@ -62,7 +63,6 @@ class VectorSymbol(Symbol):
         self._limSup = 0
         self.sum = 0
         self.k = 0
-        self.dirBase = 5000
 
     @property
     def limSup(self):
@@ -94,7 +94,6 @@ class MatrixSymbol(Symbol):
         self._limSup2 = 0
         self.sum = 0
         self.k = 0
-        self.dirBase = 6000
 
     @property
     def limSup1(self):
