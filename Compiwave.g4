@@ -163,9 +163,12 @@ T_INT : 'int';
 T_BOOL : 'boolean';
 T_STRING : 'string';
 
-ID  : LETTER (LETTER | DIGIT)* ;
+ID  : LOWERCASE (LETTER | DIGIT)* ;
 
-BOOLEAN : ('true' | 'false');
+BOOLEAN
+    : 'True'
+    | 'False'
+    ;
 
 INT : DIGIT+ ;
 
@@ -175,6 +178,9 @@ FLOAT
 	;
 
 STRING : '"' (ESC|.)*? '"' ;
+
+fragment
+LOWERCASE : [a-z] ;
 
 fragment
 LETTER : [a-zA-Z_] ;
