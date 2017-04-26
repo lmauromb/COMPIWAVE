@@ -21,59 +21,59 @@
 begin
     main
     {
-        int A[3][3];
-        int B[3][4];
-        int R[3][4];
+        int matrix_A[3][3];
+        int matrix_B[3][4];
+        int matrix_R[3][4];
         int i = 0;
         int j = 0;
         int k = 0;
 
-        A[0][0] = 12;
-        A[0][1] = 7;
-        A[0][2] = 3;
+        matrix_A[0][0] = 12;
+        matrix_A[0][1] = 7;
+        matrix_A[0][2] = 3;
 
-        A[1][0] = 4;
-        A[1][1] = 5;
-        A[1][2] = 6;
+        matrix_A[1][0] = 4;
+        matrix_A[1][1] = 5;
+        matrix_A[1][2] = 6;
 
-        A[2][0] = 7;
-        A[2][1] = 8;
-        A[2][2] = 9;
+        matrix_A[2][0] = 7;
+        matrix_A[2][1] = 8;
+        matrix_A[2][2] = 9;
 
-        B[0][0] = 5;
-        B[0][1] = 8;
-        B[0][2] = 1;
-        B[0][3] = 2;
+        matrix_B[0][0] = 5;
+        matrix_B[0][1] = 8;
+        matrix_B[0][2] = 1;
+        matrix_B[0][3] = 2;
 
-        B[1][0] = 6;
-        B[1][1] = 7;
-        B[1][2] = 3;
-        B[1][3] = 0;
+        matrix_B[1][0] = 6;
+        matrix_B[1][1] = 7;
+        matrix_B[1][2] = 3;
+        matrix_B[1][3] = 0;
 
-        B[2][0] = 4;
-        B[2][1] = 5;
-        B[2][2] = 9;
-        B[2][3] = 1;
+        matrix_B[2][0] = 4;
+        matrix_B[2][1] = 5;
+        matrix_B[2][2] = 9;
+        matrix_B[2][3] = 1;
 
-        R[0][0] = 0;
-        R[0][1] = 0;
-        R[0][2] = 0;
-        R[0][3] = 0;
+        matrix_R[0][0] = 0;
+        matrix_R[0][1] = 0;
+        matrix_R[0][2] = 0;
+        matrix_R[0][3] = 0;
 
-        R[1][0] = 0;
-        R[1][1] = 0;
-        R[1][2] = 0;
-        R[1][3] = 0;
+        matrix_R[1][0] = 0;
+        matrix_R[1][1] = 0;
+        matrix_R[1][2] = 0;
+        matrix_R[1][3] = 0;
 
-        R[2][0] = 0;
-        R[2][1] = 0;
-        R[2][2] = 0;
-        R[2][3] = 0;
+        matrix_R[2][0] = 0;
+        matrix_R[2][1] = 0;
+        matrix_R[2][2] = 0;
+        matrix_R[2][3] = 0;
 
         while(i <  3){
             while(j < 4){
                 while(k < 3){
-                    R[i][j] = R[i][j] + A[i][k] * B[k][j];
+                    matrix_R[i][j] = matrix_R[i][j] + matrix_A[i][k] * matrix_B[k][j];
                     k = k + 1;
                 }
                 j = j + 1;
@@ -86,7 +86,7 @@ begin
 
         while(i <  3){
             while(j < 4){
-                print(R[i][j]);
+                print(matrix_R[i][j]);
                 j = j + 1;
             }
             i = i + 1;

@@ -4,27 +4,27 @@ begin
     main
     {
         int size = 10;
-        int Arreglo[10];
+        int arreglo[10];
         int i = 0;
 
-        Arreglo[0] = 10;
-        Arreglo[1] = 9;
-        Arreglo[2] = 8;
-        Arreglo[3] = 7;
-        Arreglo[4] = 6;
-        Arreglo[5] = 5;
-        Arreglo[6] = 4;
-        Arreglo[7] = 3;
-        Arreglo[8] = 2;
-        Arreglo[9] = 1;
+        arreglo[0] = 10;
+        arreglo[1] = 9;
+        arreglo[2] = 8;
+        arreglo[3] = 7;
+        arreglo[4] = 6;
+        arreglo[5] = 5;
+        arreglo[6] = 4;
+        arreglo[7] = 3;
+        arreglo[8] = 2;
+        arreglo[9] = 1;
 
         while(i < size){
             int j = i + 1;
             while(j < size){
-                if(Arreglo[i] > Arreglo[j]){
-                    int temp = Arreglo[i];
-                    Arreglo[i] = Arreglo[j];
-                    Arreglo[j] = temp;
+                if(arreglo[i] > arreglo[j]){
+                    int temp = arreglo[i];
+                    arreglo[i] = arreglo[j];
+                    arreglo[j] = temp;
                 }
                 j = j + 1;
             }
@@ -34,7 +34,7 @@ begin
         i = 0;
 
         while(i < size){
-            print(Arreglo[i]);
+            print(arreglo[i]);
             i = i + 1;
         }
 
