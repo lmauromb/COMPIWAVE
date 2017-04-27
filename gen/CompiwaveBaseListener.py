@@ -450,6 +450,9 @@ class CompiwaveBaseListener(CompiwaveListener):
             current = self.pilaSaltos.pop() - 1
             result = ctx.if_expr().getText()
 
+            if self.currentScope.resolve(result):
+                result = self.currentScope.resolve(result).dirBase
+
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
 
@@ -459,6 +462,9 @@ class CompiwaveBaseListener(CompiwaveListener):
             end = self.pilaSaltos.pop()
             current = self.pilaSaltos.pop() - 1
             result = ctx.if_expr().getText()
+
+            if self.currentScope.resolve(result):
+                result = self.currentScope.resolve(result).dirBase
 
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
@@ -486,6 +492,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         return_while = self.pilaSaltos.pop() # a donde quiero regresar
         result = ctx.if_expr().getText()
 
+        if self.currentScope.resolve(result):
+            result = self.currentScope.resolve(result).dirBase
+
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
@@ -503,6 +512,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         return_do = self.pilaSaltos.pop()
         result = ctx.do_if_expr().getText()
 
+        if self.currentScope.resolve(result):
+            result = self.currentScope.resolve(result).dirBase
+
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
@@ -517,6 +529,9 @@ class CompiwaveBaseListener(CompiwaveListener):
     def exitReturn_statement(self, ctx:CompiwaveParser.Return_statementContext):
         result = ctx.expr().getText()
 
+        if self.currentScope.resolve(result):
+            result = self.currentScope.resolve(result).dirBase
+
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
@@ -528,6 +543,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         for argument in ctx.numberOfArguments:
             param = self.contParam + 1
             result = argument.getText()
+
+            if self.currentScope.resolve(result):
+                result = self.currentScope.resolve(result).dirBase
 
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
@@ -558,6 +576,9 @@ class CompiwaveBaseListener(CompiwaveListener):
     def exitPrint_statement(self, ctx:CompiwaveParser.Print_statementContext):
         result = ctx.expr().getText()
 
+        if self.currentScope.resolve(result):
+            result = self.currentScope.resolve(result).dirBase
+
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
@@ -576,6 +597,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if vector_index in self.diccionarioTemp:
             vector_index = self.diccionarioTemp[vector_index]
+
+        if self.currentScope.resolve(vector_index):
+            vector_index = self.currentScope.resolve(vector_index).dirBase
 
         current_vector = self.currentScope.resolve(vector_name)
 
@@ -601,6 +625,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if expr in self.diccionarioTemp:
             expr = self.diccionarioTemp[expr]
 
+        if self.currentScope.resolve(expr):
+            expr = self.currentScope.resolve(expr).dirBase
+
         quadruple = Quadruple("=", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -612,6 +639,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if vector_index in self.diccionarioTemp:
             vector_index = self.diccionarioTemp[vector_index]
+
+        if self.currentScope.resolve(vector_index):
+            vector_index = self.currentScope.resolve(vector_index).dirBase
 
         current_vector = self.currentScope.resolve(vector_name)
 
@@ -647,6 +677,12 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if matrix_index2 in self.diccionarioTemp:
             matrix_index2 = self.diccionarioTemp[matrix_index2]
+
+        if self.currentScope.resolve(matrix_index1):
+            matrix_index1 = self.currentScope.resolve(matrix_index1).dirBase
+
+        if self.currentScope.resolve(matrix_index2):
+            matrix_index2 = self.currentScope.resolve(matrix_index2).dirBase
 
         current_matrix = self.currentScope.resolve(matrix_name)
 
@@ -690,6 +726,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if expr in self.diccionarioTemp:
             expr = self.diccionarioTemp[expr]
 
+        if self.currentScope.resolve(expr):
+            expr = self.currentScope.resolve(expr).dirBase
+
         quadruple = Quadruple("=", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -706,6 +745,12 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if matrix_index2 in self.diccionarioTemp:
             matrix_index2 = self.diccionarioTemp[matrix_index2]
+
+        if self.currentScope.resolve(matrix_index1):
+            matrix_index1 = self.currentScope.resolve(matrix_index1).dirBase
+
+        if self.currentScope.resolve(matrix_index2):
+            matrix_index2 = self.currentScope.resolve(matrix_index2).dirBase
 
         current_matrix = self.currentScope.resolve(matrix_name)
 
