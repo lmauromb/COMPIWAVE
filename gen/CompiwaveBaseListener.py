@@ -22,8 +22,12 @@ class CompiwaveBaseListener(CompiwaveListener):
     currentScope = None
     symbolTable = SymbolTable()
     cont = 1
-    contTemp = 8000 # todas las variables temporales inician en 8000
-    contParam = 9000
+    contTemp = 80000 # todas las variables temporales inician en 80000
+    contParam = 90000
+    cont_int = 5000
+    cont_float = 10000
+    cont_string = 15000
+    cont_boolean = 20000
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
     pilaSaltos = []
@@ -46,6 +50,10 @@ class CompiwaveBaseListener(CompiwaveListener):
         quadruple = Quadruple('GOTO', '~', '~', '~')
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
+        self.cont_int = 5000
+        self.cont_float = 10000
+        self.cont_string = 15000
+        self.cont_boolean = 20000
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         # print(self.symbolTable)
@@ -80,7 +88,11 @@ class CompiwaveBaseListener(CompiwaveListener):
         # print(s)
         returnType = t
         ms = MethodSymbol(ctx.ID().getText(), returnType, self.currentScope)
-        self.contTemp = 8000
+        self.contTemp = 80000
+        self.cont_int = 25000
+        self.cont_float = 30000
+        self.cont_string = 35000
+        self.cont_boolean = 40000
 
         if self.currentScope.resolve(ms.name) is None:
             self.currentScope.define(ms)
@@ -103,7 +115,11 @@ class CompiwaveBaseListener(CompiwaveListener):
         ms = MethodSymbol("main", "void", self.currentScope)
         self.currentScope.define(ms)
         self.currentScope = ms
-        self.contTemp = 8000
+        self.contTemp = 80000
+        self.cont_int = 25000
+        self.cont_float = 30000
+        self.cont_string = 35000
+        self.cont_boolean = 40000
         self.listaInstrucciones[0].result = self.cont
 
     def exitMain_function(self, ctx:CompiwaveParser.Main_functionContext):
@@ -112,13 +128,32 @@ class CompiwaveBaseListener(CompiwaveListener):
 
     def enterFunction_param(self, ctx:CompiwaveParser.Function_paramContext):
         vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
+        vs.dirBase = self.contParam+1
+        self.contParam += 1
         self.currentScope.define(vs)
+
+    def exitFunction_params(self, ctx:CompiwaveParser.Function_paramsContext):
+        self.contParam = 90000
 
     def enterVar_declaration(self, ctx:CompiwaveParser.Var_declarationContext):
         s = "def var: {} as type {}".format(ctx.ID().getText(),
                                             ctx.cwtype().getText())
         # print(s)
         vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
+
+        if ctx.cwtype().getText() == "int":
+            vs.dirBase = self.cont_int
+            self.cont_int += 1
+        elif ctx.cwtype().getText() == "float":
+            vs.dirBase = self.cont_float
+            self.cont_float += 1
+        elif ctx.cwtype().getText() == "string":
+            vs.dirBase = self.cont_string
+            self.cont_string += 1
+        elif ctx.cwtype().getText() == "boolean":
+            vs.dirBase = self.cont_boolean
+            self.cont_boolean += 1
+
         if self.currentScope.resolve(vs.name) is None:
             self.currentScope.define(vs)
         else:
@@ -135,6 +170,19 @@ class CompiwaveBaseListener(CompiwaveListener):
         vs = VectorSymbol(ctx.ID().getText(), ctx.cwtype().getText())
         vs.limSup = int(ctx.expr().getText())
 
+        if ctx.cwtype().getText() == "int":
+            vs.dirBase = self.cont_int
+            self.cont_int += vs.m0
+        elif ctx.cwtype().getText() == "float":
+            vs.dirBase = self.cont_float
+            self.cont_float += vs.m0
+        elif ctx.cwtype().getText() == "string":
+            vs.dirBase = self.cont_string
+            self.cont_string += vs.m0
+        elif ctx.cwtype().getText() == "boolean":
+            vs.dirBase = self.cont_boolean
+            self.cont_boolean += vs.m0
+
         if self.currentScope.resolve(vs.name) is None:
             self.currentScope.define(vs)
         else:
@@ -144,6 +192,19 @@ class CompiwaveBaseListener(CompiwaveListener):
         ms = MatrixSymbol(ctx.ID().getText(), ctx.cwtype().getText())
         ms.limSup1 = int(ctx.expr(0).getText())
         ms.limSup2 = int(ctx.expr(1).getText())
+
+        if ctx.cwtype().getText() == "int":
+            ms.dirBase = self.cont_int
+            self.cont_int += ms.m0
+        elif ctx.cwtype().getText() == "float":
+            ms.dirBase = self.cont_float
+            self.cont_float += ms.m0
+        elif ctx.cwtype().getText() == "string":
+            ms.dirBase = self.cont_string
+            self.cont_string += ms.m0
+        elif ctx.cwtype().getText() == "boolean":
+            ms.dirBase = self.cont_boolean
+            self.cont_boolean += ms.m0
 
         if self.currentScope.resolve(ms.name) is None:
             self.currentScope.define(ms)
@@ -215,6 +276,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp + operand + rightOp
 
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(rightOp):
+            leftOp = self.currentScope.resolve(rightOp).dirBase
+
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
@@ -233,6 +300,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
         key = leftOp+operand+rightOp
+
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(rightOp):
+            rightOp = self.currentScope.resolve(rightOp).dirBase
 
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
@@ -253,6 +326,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp + operand + rightOp
 
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(rightOp):
+            rightOp = self.currentScope.resolve(rightOp).dirBase
+
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
@@ -271,6 +350,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         rightOp = ctx.getChild(2).getText()
         result =self.contTemp+1
         key = leftOp + operand + rightOp
+
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(rightOp):
+            rightOp = self.currentScope.resolve(rightOp).dirBase
 
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
@@ -291,6 +376,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         result = self.contTemp+1
         key = leftOp + operand + rightOp
 
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(rightOp):
+            rightOp = self.currentScope.resolve(rightOp).dirBase
+
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
@@ -309,6 +400,12 @@ class CompiwaveBaseListener(CompiwaveListener):
         rightOp = "~"
         result = ctx.getChild(0).getText()
 
+        if self.currentScope.resolve(leftOp):
+            leftOp = self.currentScope.resolve(leftOp).dirBase
+
+        if self.currentScope.resolve(result):
+            result = self.currentScope.resolve(result).dirBase
+
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
@@ -324,6 +421,12 @@ class CompiwaveBaseListener(CompiwaveListener):
             operand = ctx.ASSIGN().getText()
             leftOp = ctx.expr().getText()
             rightOp = "~"
+
+            if self.currentScope.resolve(leftOp):
+                leftOp = self.currentScope.resolve(leftOp).dirBase
+
+            if self.currentScope.resolve(result):
+                result = self.currentScope.resolve(result).dirBase
 
             if leftOp in self.diccionarioTemp:
                 leftOp = self.diccionarioTemp[leftOp]
@@ -433,7 +536,7 @@ class CompiwaveBaseListener(CompiwaveListener):
             self.listaInstrucciones.append(quadruple)
             self.cont += 1
             self.contParam = param
-        self.contParam = 9000
+        self.contParam = 90000
 
     def exitFunction_statement(self, ctx:CompiwaveParser.Function_statementContext):
         function_name = ctx.ID().getText()

@@ -5,7 +5,7 @@ class Symbol:
         self.name = name
         self.cwtype = cwtype
         self.scope = None
-        self.dirBase = 15000
+        self.dirBase = 0
 
 
 class BuiltInTypeSymbol(Symbol):
