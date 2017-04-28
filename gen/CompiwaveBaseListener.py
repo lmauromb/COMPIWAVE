@@ -28,6 +28,9 @@ class CompiwaveBaseListener(CompiwaveListener):
     cont_float = 10000
     cont_string = 15000
     cont_boolean = 20000
+    cont_cte = 50000
+    diccionario_cte = OrderedDict()
+    diccionario_funciones = OrderedDict()
     diccionarioTemp = OrderedDict()
     listaInstrucciones = []
     pilaSaltos = []
@@ -57,6 +60,7 @@ class CompiwaveBaseListener(CompiwaveListener):
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         # print(self.symbolTable)
+        print(self.diccionario_cte)
         print("cont: {}".format(self.cont))
         print("\n".join(str(i) for i in self.listaInstrucciones))
         pass
@@ -97,6 +101,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         if self.currentScope.resolve(ms.name) is None:
             self.currentScope.define(ms)
             self.currentScope = ms
+            self.diccionario_funciones[ms.name] = self.cont
         else:
             raise Exception("Name {} already used".format(ctx.ID().getText()))
 
@@ -789,3 +794,43 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.contTemp = result
 
         self.diccionarioTemp[ctx.getText()] = result
+
+    ###############
+    ##### CTE #####
+    ###############
+
+    def enterIntConst(self, ctx:CompiwaveParser.IntConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
+
+    def enterFloatConst(self, ctx:CompiwaveParser.FloatConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
+
+    def enterBoolConst(self, ctx:CompiwaveParser.BoolConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
+
+    def enterStringConst(self, ctx:CompiwaveParser.StringConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
