@@ -61,6 +61,7 @@ class CompiwaveBaseListener(CompiwaveListener):
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         # print(self.symbolTable)
         print(self.diccionario_cte)
+        print(self.diccionario_funciones)
         print("cont: {}".format(self.cont))
         print("\n".join(str(i) for i in self.listaInstrucciones))
         pass
