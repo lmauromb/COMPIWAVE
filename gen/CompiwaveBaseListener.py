@@ -60,8 +60,8 @@ class CompiwaveBaseListener(CompiwaveListener):
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
         # print(self.symbolTable)
-        print(self.diccionario_cte)
-        print(self.diccionario_funciones)
+        # print(self.diccionario_cte)
+        # print(self.diccionario_funciones)
         print("cont: {}".format(self.cont))
         print("\n".join(str(i) for i in self.listaInstrucciones))
         pass
@@ -131,6 +131,11 @@ class CompiwaveBaseListener(CompiwaveListener):
     def exitMain_function(self, ctx:CompiwaveParser.Main_functionContext):
         # print("{} : {}".format(self.currentScope.getScopeName(), self.currentScope.enclosedScope))
         self.currentScope = self.currentScope.enclosingScope
+
+        # Cuadruplos
+        quadruple = Quadruple('HALT', '~', '~', '~')
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
 
     def enterFunction_param(self, ctx:CompiwaveParser.Function_paramContext):
         vs = VariableSymbol(ctx.ID().getText(), ctx.cwtype().getText())
