@@ -281,17 +281,28 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp + operand + rightOp
 
+        # Checa si son variables
         if self.currentScope.resolve(leftOp):
             leftOp = self.currentScope.resolve(leftOp).dirBase
 
         if self.currentScope.resolve(rightOp):
-            leftOp = self.currentScope.resolve(rightOp).dirBase
+            rightOp = self.currentScope.resolve(rightOp).dirBase
 
+        # Checa si son temporales
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
+
+        # Checa si son Cconstantes
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
+        if rightOp in self.diccionario_cte:
+            rightOp = self.diccionario_cte[rightOp]
+
+
 
         self.diccionarioTemp[key] = result
         quadruple = Quadruple(operand, leftOp, rightOp, result)
@@ -306,17 +317,26 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp+operand+rightOp
 
+        # Checa si son variables
         if self.currentScope.resolve(leftOp):
             leftOp = self.currentScope.resolve(leftOp).dirBase
 
         if self.currentScope.resolve(rightOp):
             rightOp = self.currentScope.resolve(rightOp).dirBase
 
+        # Checa si son temporales
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
+
+        # Checa si son Cconstantes
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
+        if rightOp in self.diccionario_cte:
+            rightOp = self.diccionario_cte[rightOp]
 
         self.diccionarioTemp[key] = result
         quadruple = Quadruple(operand, leftOp, rightOp, result)
@@ -331,17 +351,26 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp + operand + rightOp
 
+        # Checa si son variables
         if self.currentScope.resolve(leftOp):
             leftOp = self.currentScope.resolve(leftOp).dirBase
 
         if self.currentScope.resolve(rightOp):
             rightOp = self.currentScope.resolve(rightOp).dirBase
 
+        # Checa si son temporales
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
+
+        # Checa si son Cconstantes
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
+        if rightOp in self.diccionario_cte:
+            rightOp = self.diccionario_cte[rightOp]
 
         self.diccionarioTemp[key] = result
         quadruple = Quadruple(operand, leftOp, rightOp, result)
@@ -356,17 +385,26 @@ class CompiwaveBaseListener(CompiwaveListener):
         result =self.contTemp+1
         key = leftOp + operand + rightOp
 
+        # Checa si son variables
         if self.currentScope.resolve(leftOp):
             leftOp = self.currentScope.resolve(leftOp).dirBase
 
         if self.currentScope.resolve(rightOp):
             rightOp = self.currentScope.resolve(rightOp).dirBase
 
+        # Checa si son temporales
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
+
+        # Checa si son Cconstantes
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
+        if rightOp in self.diccionario_cte:
+            rightOp = self.diccionario_cte[rightOp]
 
         self.diccionarioTemp[key] = result
         quadruple = Quadruple(operand, leftOp, rightOp, result)
@@ -381,17 +419,26 @@ class CompiwaveBaseListener(CompiwaveListener):
         result = self.contTemp+1
         key = leftOp + operand + rightOp
 
+        # Checa si son variables
         if self.currentScope.resolve(leftOp):
             leftOp = self.currentScope.resolve(leftOp).dirBase
 
         if self.currentScope.resolve(rightOp):
             rightOp = self.currentScope.resolve(rightOp).dirBase
 
+        # Checa si son temporales
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
         if rightOp in self.diccionarioTemp:
             rightOp = self.diccionarioTemp[rightOp]
+
+        # Checa si son Cconstantes
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
+        if rightOp in self.diccionario_cte:
+            rightOp = self.diccionario_cte[rightOp]
 
         self.diccionarioTemp[key] = result
         quadruple = Quadruple(operand, leftOp, rightOp, result)
@@ -414,6 +461,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if leftOp in self.diccionarioTemp:
             leftOp = self.diccionarioTemp[leftOp]
 
+        if leftOp in self.diccionario_cte:
+            leftOp = self.diccionario_cte[leftOp]
+
         quadruple = Quadruple(operand, leftOp, rightOp, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -435,6 +485,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
             if leftOp in self.diccionarioTemp:
                 leftOp = self.diccionarioTemp[leftOp]
+
+            if leftOp in self.diccionario_cte:
+                leftOp = self.diccionario_cte[leftOp]
 
             quadruple = Quadruple(operand, leftOp, rightOp, result)
             self.listaInstrucciones.append(quadruple)
@@ -461,6 +514,9 @@ class CompiwaveBaseListener(CompiwaveListener):
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
 
+            if result in self.diccionario_cte:
+                result = self.diccionario_cte[result]
+
             quadruple = Quadruple('GOTOF', result, '~', self.cont)
             self.listaInstrucciones[current] = quadruple
         else:
@@ -473,6 +529,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
+
+            if result in self.diccionario_cte:
+                result = self.diccionario_cte[result]
 
             quadruple = Quadruple('GOTOF', result, '~', end)
             self.listaInstrucciones[current] = quadruple
@@ -503,6 +562,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
+        if result in self.diccionario_cte:
+            result = self.diccionario_cte[result]
+
         quadruple = Quadruple('GOTOF', result, '~', self.cont+1)
         self.listaInstrucciones[current] = quadruple
         # Regreso
@@ -523,6 +585,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
+        if result in self.diccionario_cte:
+            result = self.diccionario_cte[result]
+
         quadruple = Quadruple('GOTOT', result, '~', return_do)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -540,6 +605,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
+        if result in self.diccionario_cte:
+            result = self.diccionario_cte[result]
+
         quadruple = Quadruple('RETURN', '~', '~', result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -554,6 +622,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
             if result in self.diccionarioTemp:
                 result = self.diccionarioTemp[result]
+
+            if result in self.diccionario_cte:
+                result = self.diccionario_cte[result]
 
             quadruple = Quadruple('PARAM', result, '~', param)
             self.listaInstrucciones.append(quadruple)
@@ -587,6 +658,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if result in self.diccionarioTemp:
             result = self.diccionarioTemp[result]
 
+        if result in self.diccionario_cte:
+            result = self.diccionario_cte[result]
+
         quadruple = Quadruple('PRINT', '~', '~', result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -605,6 +679,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if self.currentScope.resolve(vector_index):
             vector_index = self.currentScope.resolve(vector_index).dirBase
+
+        if vector_index in self.diccionario_cte:
+            vector_index = self.diccionario_cte[vector_index]
 
         current_vector = self.currentScope.resolve(vector_name)
 
@@ -633,6 +710,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if self.currentScope.resolve(expr):
             expr = self.currentScope.resolve(expr).dirBase
 
+        if expr in self.diccionario_cte:
+            expr = self.diccionario_cte[expr]
+
         quadruple = Quadruple("=", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -647,6 +727,9 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if self.currentScope.resolve(vector_index):
             vector_index = self.currentScope.resolve(vector_index).dirBase
+
+        if vector_index in self.diccionario_cte:
+            vector_index = self.diccionario_cte[vector_index]
 
         current_vector = self.currentScope.resolve(vector_name)
 
@@ -688,6 +771,12 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if self.currentScope.resolve(matrix_index2):
             matrix_index2 = self.currentScope.resolve(matrix_index2).dirBase
+
+        if matrix_index1 in self.diccionario_cte:
+            matrix_index1 = self.diccionario_cte[matrix_index1]
+
+        if matrix_index2 in self.diccionario_cte:
+            matrix_index2 = self.diccionario_cte[matrix_index2]
 
         current_matrix = self.currentScope.resolve(matrix_name)
 
@@ -734,6 +823,9 @@ class CompiwaveBaseListener(CompiwaveListener):
         if self.currentScope.resolve(expr):
             expr = self.currentScope.resolve(expr).dirBase
 
+        if expr in self.diccionario_cte:
+            expr = self.diccionario_cte[expr]
+
         quadruple = Quadruple("=", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
@@ -756,6 +848,12 @@ class CompiwaveBaseListener(CompiwaveListener):
 
         if self.currentScope.resolve(matrix_index2):
             matrix_index2 = self.currentScope.resolve(matrix_index2).dirBase
+
+        if matrix_index1 in self.diccionario_cte:
+            matrix_index1 = self.diccionario_cte[matrix_index1]
+
+        if matrix_index2 in self.diccionario_cte:
+            matrix_index2 = self.diccionario_cte[matrix_index2]
 
         current_matrix = self.currentScope.resolve(matrix_name)
 
