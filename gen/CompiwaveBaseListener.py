@@ -59,7 +59,15 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont_boolean = 20000
 
     def exitCompiwave(self, ctx:CompiwaveParser.CompiwaveContext):
-        # print(self.symbolTable)
+
+        # print("Variables Globales y su directorio")
+        # for symbol in self.symbolTable.globals.symbols:
+        #     variable = self.symbolTable.globals.symbols[symbol]
+        #     if isinstance(variable, MethodSymbol):
+        #         print(variable.enclosedScope)
+        #     else:
+        #         print("{} : {}".format(variable.name, variable.dirBase))
+
         # print(self.diccionario_cte)
         # print(self.diccionario_funciones)
         print("cont: {}".format(self.cont))
