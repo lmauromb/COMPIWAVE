@@ -37,10 +37,17 @@ class VirtualMachine:
 
     def cpu(self):
         current_quad = self.code[self.ip]
+        is_VM = False
+        current_VM = None
         while current_quad.operand != "HALT" and self.ip < len(self.code):
             self.ip += 1
             if current_quad.operand == "=":
                 value = current_quad.leftOp
+                key = current_quad.result
+
+                if key in self.global_memory:
+                    key = self.global_memory[key]
+
                 if value in self.range_cte:
                     value = self.assign_cte(value)
                 elif value in self.global_memory:
@@ -48,7 +55,13 @@ class VirtualMachine:
                 else:
                     raise Exception("Variable is not initialized")
 
-                key = current_quad.result
+                # if is_VM:
+                #     key = self.global_memory[current_quad.result]
+                #     is_VM = False
+                # else:
+
+                # print("{} : {}".format(key, value))
+
 
                 if key in self.range_global_int or key in self.range_local_int:
                     value = int(value)
@@ -59,7 +72,12 @@ class VirtualMachine:
                 elif key in self.range_global_boolean or key in self.range_local_boolean:
                     value = bool(value)
 
+
                 self.global_memory[key] = value
+
+                # print("{} : {}".format(key, value))
+
+
 
             elif current_quad.operand == "*":
                 leftOp = current_quad.leftOp
@@ -106,6 +124,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp + rightOP
+
             elif current_quad.operand == "-":
                 leftOp = current_quad.leftOp
                 rightOP = current_quad.rightOp
@@ -254,6 +273,18 @@ class VirtualMachine:
             elif current_quad.operand == "ENDFUNC":
                 pass
             elif current_quad.operand == "VER":
-                pass
+                lim_inf = current_quad.rightOp
+                lim_sup = current_quad.result + 1
+                limit_range = range(lim_inf, lim_sup)
+                expr = current_quad.leftOp
+                if expr in self.range_cte:
+                    expr = self.assign_cte(expr)
+                elif expr in self.global_memory:
+                    expr = self.global_memory[expr]
+
+                is_VM = True
+
+                if expr not in limit_range:
+                    raise Exception("Index out of bounds")
 
             current_quad = self.code[self.ip]
