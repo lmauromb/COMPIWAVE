@@ -45,8 +45,8 @@ class VirtualMachine:
                 value = current_quad.leftOp
                 key = current_quad.result
 
-                if key in self.global_memory:
-                    key = self.global_memory[key]
+                # if key in self.global_memory:
+                #     key = self.global_memory[key]
 
                 if value in self.range_cte:
                     value = self.assign_cte(value)
@@ -309,6 +309,43 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp + rightOP
+            elif current_quad.operand == "ASSIGN":
+                value = current_quad.leftOp
+                key = current_quad.result
+
+                if key in self.global_memory:
+                    key = self.global_memory[key]
+
+                if value in self.range_cte:
+                    value = self.assign_cte(value)
+                elif value in self.global_memory:
+                    value = self.global_memory[value]
+                else:
+                    raise Exception("Variable is not initialized")
+
+                # if is_VM:
+                #     key = self.global_memory[current_quad.result]
+                #     is_VM = False
+                # else:
+
+                # print("{} : {}".format(key, value))
+
+
+                if key in self.range_global_int or key in self.range_local_int:
+                    value = int(value)
+                elif key in self.range_global_float or key in self.range_local_float:
+                    value = float(value)
+                elif key in self.range_global_string or key in self.range_local_string:
+                    value = str(value)
+                elif key in self.range_global_boolean or key in self.range_local_boolean:
+                    value = bool(value)
+
+                self.global_memory[key] = value
+            elif current_quad.operand == "ACCESS":
+                previous_quad = self.code[self.ip-2]
+                key = self.global_memory[previous_quad.result]
+                value = self.global_memory[key]
+                self.global_memory[previous_quad.result] = value
             elif current_quad.operand == "S1M1":
                 leftOp = current_quad.leftOp
                 rightOP = int(current_quad.rightOp)
