@@ -704,13 +704,13 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", vector_index, current_vector.k, result)
+        quadruple = Quadruple("K", vector_index, current_vector.k, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", self.contTemp, current_vector.dirBase, result)
+        quadruple = Quadruple("DIRBASE", self.contTemp, current_vector.dirBase, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -752,13 +752,13 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", vector_index, current_vector.k, result)
+        quadruple = Quadruple("K", vector_index, current_vector.k, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", self.contTemp, current_vector.dirBase, result)
+        quadruple = Quadruple("DIRBASE", self.contTemp, current_vector.dirBase, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -800,7 +800,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp+1
-        quadruple = Quadruple("*", matrix_index1, current_matrix.m1, result)
+        quadruple = Quadruple("S1M1", matrix_index1, current_matrix.m1, result) # *
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -811,19 +811,19 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", self.contTemp, matrix_index2, result)
+        quadruple = Quadruple("S1M1M2", self.contTemp, matrix_index2, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp+1
-        quadruple = Quadruple("+", self.contTemp, current_matrix.k, result)
+        quadruple = Quadruple("K", self.contTemp, current_matrix.k, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp + 1
-        quadruple = Quadruple("+", self.contTemp, current_matrix.dirBase, result)
+        quadruple = Quadruple("DIRBASE", self.contTemp, current_matrix.dirBase, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -877,7 +877,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp + 1
-        quadruple = Quadruple("*", matrix_index1, current_matrix.m1, result)
+        quadruple = Quadruple("S1M1", matrix_index1, current_matrix.m1, result) # *
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
@@ -888,19 +888,19 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.cont += 1
 
         result = self.contTemp + 1
-        quadruple = Quadruple("+", self.contTemp, matrix_index2, result)
+        quadruple = Quadruple("S1M1M2", self.contTemp, matrix_index2, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp + 1
-        quadruple = Quadruple("+", self.contTemp, current_matrix.k, result)
+        quadruple = Quadruple("K", self.contTemp, current_matrix.k, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
 
         result = self.contTemp + 1
-        quadruple = Quadruple("+", self.contTemp, current_matrix.dirBase, result)
+        quadruple = Quadruple("DIRBASE", self.contTemp, current_matrix.dirBase, result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
         self.contTemp = result
