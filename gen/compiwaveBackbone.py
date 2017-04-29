@@ -27,5 +27,7 @@ def main(argv):
 
     virtual_machine.cpu()
 
+    print(virtual_machine.global_memory)
+
 if __name__ == '__main__':
     main(sys.argv)
