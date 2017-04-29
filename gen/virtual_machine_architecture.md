@@ -13,8 +13,8 @@ instruccion (code memory) a ejecutar.
     - Variables Boolean Globales: 20000
     - Variables Int Locales: 25000
     - Variables Float Locales: 30000
-    - Variables String Locales: 15000
-    - Variables Boolean Locales: 20000
+    - Variables String Locales: 35000
+    - Variables Boolean Locales: 40000
 - CPU: Para ejecutar las instrucciones. Es un loop que encierra un switch del cuadruplo.
 - Constant Pool: Direccion de las variables contantes.
     - Inician en la direccion 50000
