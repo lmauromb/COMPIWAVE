@@ -185,14 +185,66 @@ class VirtualMachine:
                 key = current_quad.result
                 self.global_memory[key] = leftOp or rightOP
 
+            elif current_quad.operand == ">":
+                leftOp = current_quad.leftOp
+                rightOP = current_quad.rightOp
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+                if rightOP in self.range_cte:
+                    rightOP = self.assign_cte(rightOP)
+                elif rightOP in self.global_memory:
+                    rightOP = self.global_memory[rightOP]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp > rightOP
+
+            elif current_quad.operand == "<":
+                leftOp = current_quad.leftOp
+                rightOP = current_quad.rightOp
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+                if rightOP in self.range_cte:
+                    rightOP = self.assign_cte(rightOP)
+                elif rightOP in self.global_memory:
+                    rightOP = self.global_memory[rightOP]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp < rightOP
+
             elif current_quad.operand == "PRINT":
-                pass
+                result = current_quad.result
+                if result in self.range_cte:
+                    result = self.assign_cte(result)
+                elif result in self.global_memory:
+                    result = self.global_memory[result]
+                print(result)
             elif current_quad.operand == "GOTO":
-                pass
+                result = current_quad.result
+                self.ip = result - 1
             elif current_quad.operand == "GOTOT":
-                pass
+                leftOp = current_quad.leftOp
+                result = current_quad.result
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+                if leftOp:
+                    self.ip = result - 1
             elif current_quad.operand == "GOTOF":
-                pass
+                leftOp = current_quad.leftOp
+                result = current_quad.result
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+                if not leftOp:
+                    self.ip = result - 1
             elif current_quad.operand == "ERA":
                 pass
             elif current_quad.operand == "GOSUB":
