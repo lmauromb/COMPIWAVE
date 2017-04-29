@@ -9,8 +9,7 @@
         arreglo[1] = 9;
         arreglo[2] = 8;
 
-
-        # print(arreglo[0]);
+        print(arreglo[0]);
     }
 
 end

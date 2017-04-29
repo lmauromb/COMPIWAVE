@@ -286,5 +286,50 @@ class VirtualMachine:
 
                 if expr not in limit_range:
                     raise Exception("Index out of bounds")
+            elif current_quad.operand == "K":
+                leftOp = current_quad.leftOp
+                rightOP = int(current_quad.rightOp)
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp + rightOP
+
+            elif current_quad.operand == "DIRBASE":
+                leftOp = current_quad.leftOp
+                rightOP = int(current_quad.rightOp)
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp + rightOP
+            elif current_quad.operand == "S1M1":
+                leftOp = current_quad.leftOp
+                rightOP = int(current_quad.rightOp)
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp * rightOP
+            elif current_quad.operand == "S1M1M2":
+                leftOp = current_quad.leftOp
+                rightOP = int(current_quad.rightOp)
+
+                if leftOp in self.range_cte:
+                    leftOp = self.assign_cte(leftOp)
+                elif leftOp in self.global_memory:
+                    leftOp = self.global_memory[leftOp]
+
+                key = current_quad.result
+                self.global_memory[key] = leftOp + rightOP
 
             current_quad = self.code[self.ip]
