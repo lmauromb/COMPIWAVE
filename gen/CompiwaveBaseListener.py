@@ -844,7 +844,7 @@ class CompiwaveBaseListener(CompiwaveListener):
         if expr in self.diccionario_cte:
             expr = self.diccionario_cte[expr]
 
-        quadruple = Quadruple("=", expr, "~", result)
+        quadruple = Quadruple("ASSIGN", expr, "~", result)
         self.listaInstrucciones.append(quadruple)
         self.cont += 1
 
@@ -910,6 +910,10 @@ class CompiwaveBaseListener(CompiwaveListener):
         self.contTemp = result
 
         self.diccionarioTemp[ctx.getText()] = result
+
+        quadruple = Quadruple("ACCESS", "~", "~", "~")
+        self.listaInstrucciones.append(quadruple)
+        self.cont += 1
 
     ###############
     ##### CTE #####
