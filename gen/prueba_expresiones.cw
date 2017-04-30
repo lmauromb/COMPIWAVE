@@ -3,7 +3,8 @@ begin
     main
     {
 
-        print(True && False);
+        float x = -.1;
+        print(1 + x);
 
 
     }
