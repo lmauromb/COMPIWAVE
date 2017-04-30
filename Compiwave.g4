@@ -170,11 +170,11 @@ BOOLEAN
     | 'False'
     ;
 
-INT : '-'?DIGIT+ ;
+INT : DIGIT+ ;
 
 FLOAT
-	: '-'?DIGIT+ '.' DIGIT*
-	| '-'?'.' DIGIT+
+	: DIGIT+ '.' DIGIT*
+	| '.' DIGIT+
 	;
 
 STRING : '"' (ESC|.)*? '"' ;

@@ -22,8 +22,8 @@ class VirtualMachine:
 
     def assign_cte(self, cte):
         cte = list(self.cte_ref.keys())[list(self.cte_ref.values()).index(cte)]
-        int_match = re.compile('-?[0-9]+$')
-        float_match = re.compile('-?[0-9]*\\.[0-9]+')
+        int_match = re.compile('[0-9]+$')
+        float_match = re.compile('[0-9]*\\.[0-9]+')
         boolean_match = re.compile('[True|False]')
 
         if int_match.match(cte):
@@ -266,12 +266,24 @@ class VirtualMachine:
                     self.ip = result - 1
             elif current_quad.operand == "ERA":
                 pass
+            elif current_quad.operand == "PARAM":
+                value = current_quad.leftOp
+                key = current_quad.result
+
+                if value in self.range_cte:
+                    value = self.assign_cte(value)
+                elif value in self.global_memory:
+                    value = self.global_memory[value]
+
+                self.global_memory[key] = value
             elif current_quad.operand == "GOSUB":
-                pass
+                function_name = current_quad.result
+                self.function_call.append(self.ip)
+                self.ip = self.function_ref[function_name] -1;
             elif current_quad.operand == "RETURN":
                 pass
             elif current_quad.operand == "ENDFUNC":
-                pass
+                self.ip = self.function_call.pop()
             elif current_quad.operand == "VER":
                 lim_inf = current_quad.rightOp
                 lim_sup = current_quad.result + 1

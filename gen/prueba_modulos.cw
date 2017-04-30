@@ -20,8 +20,9 @@ begin
     {
         i = 2;
         j = i * 2 - 1;
+        print(j);
         uno(j);
-        print(i + dos(i + j));
+        #print(i + dos(i + j));
     }
 
 end
