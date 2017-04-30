@@ -11,6 +11,7 @@
   <script src="compiwaveBlocks.js"></script>
   <script src="FileSaver.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <audio id="wave" src="wave.mp3"></audio>
   <style>
     body {
       background-color: #fff;
@@ -190,6 +191,10 @@
       code = code.replace(/!int /g, '');
       code = 'begin\n\n' + code + '\nend';
       document.getElementById("textCode").value = code;
+      var wave = code.search("a jalar que se ocupa");
+      if(wave != -1){
+        document.getElementById("wave").play();
+      }
       //alert(code);
     }
 
