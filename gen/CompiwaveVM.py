@@ -22,8 +22,8 @@ class VirtualMachine:
 
     def assign_cte(self, cte):
         cte = list(self.cte_ref.keys())[list(self.cte_ref.values()).index(cte)]
-        int_match = re.compile('[0-9]+$')
-        float_match = re.compile('[0-9]+\\.[0-9]+')
+        int_match = re.compile('-?[0-9]+$')
+        float_match = re.compile('-?[0-9]*\\.[0-9]+')
         boolean_match = re.compile('[True|False]')
 
         if int_match.match(cte):
