@@ -87,6 +87,7 @@
     <block type="paramcall">
       <field name="value"></field>
     </block>
+    <block type="parameteroperation"></block>
   </category>
   <category name="Input">
     <block type="string">
@@ -117,9 +118,32 @@
       <field name="type">int</field>
       <field name="variable"></field>
     </block>
+    <block type="array">
+      <field name="type">int</field>
+      <field name="name"></field>
+    </block>
+    <block type="arrayad">
+      <field name="type">int</field>
+      <field name="NAME"></field>
+    </block>
+    <block type="vardeclare">
+      <field name="type">int</field>
+      <field name="name"></field>
+    </block>
+    <block type="matrixdeclare">
+      <field name="type">int</field>
+      <field name="name"></field>
+    </block>
+    <block type="matrixad">
+      <field name="type">int</field>
+      <field name="name"></field>
+    </block>
   </category>
   <category name="Assignment">
     <block type="varassign">
+      <field name="name"></field>
+    </block>
+    <block type="arrayassign">
       <field name="name"></field>
     </block>
   </category>
@@ -135,6 +159,16 @@
         {media: 'media/',
          toolbox: document.getElementById('toolbox')});
 
+    function indexes(source, find) {
+      var result = [];
+      for (i = 0; i < source.length; ++i) {
+        if (source.substring(i, i + find.length) == find) {
+          result.push(i);
+        }
+      }
+      return result;
+    }
+
     function showCode(){
       //Generate code and display it
 
@@ -142,6 +176,10 @@
       var code = Blockly.JavaScript.workspaceToCode(workspace);
       code = code.replace(/[¿]/g,'(');
       code = code.replace(/[?]/g,')');
+      code = code.replace('¡int','int');
+      code = code.replace('!int','int');
+      code = code.replace(/¡int /g, '');
+      code = code.replace(/!int /g, '');
       code = 'begin\n\n' + code + '\nend';
       document.getElementById("textCode").value = code;
       //alert(code);
@@ -154,9 +192,13 @@
       var code = Blockly.JavaScript.workspaceToCode(workspace);
       code = code.replace(/[¿]/g,'(');
       code = code.replace(/[?]/g,')');
+      code = code.replace('¡int','int');
+      code = code.replace('!int','int');
+      code = code.replace(/¡int /g, '');
+      code = code.replace(/!int /g, '');
       code = 'begin\n\n' + code + '\nend';
       var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, "fileWave.py");
+      saveAs(blob, "fileWave.cw");
       //alert(code);
     }
 

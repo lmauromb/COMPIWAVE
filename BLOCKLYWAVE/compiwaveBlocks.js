@@ -287,7 +287,7 @@ Blockly.Blocks['parameter'] = {
   init: function() {
     this.appendValueInput("param")
         .setCheck(null)
-        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"], ["void","void"]]), "paramType")
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "paramType")
         .appendField(new Blockly.FieldTextInput(""), "paramVar");
     this.setOutput(true, null);
     this.setColour(230);
@@ -412,7 +412,7 @@ Blockly.Blocks['parentesis'] = {
 Blockly.Blocks['declaration'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"], ["void","void"]]), "type")
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
         .appendField(new Blockly.FieldTextInput(""), "variable");
     this.appendValueInput("intValue")
         .setCheck(null)
@@ -468,6 +468,158 @@ Blockly.Blocks['variable'] = {
     this.appendDummyInput()
         .appendField(new Blockly.FieldTextInput(""), "value");
     this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['parameteroperation'] = {
+  init: function() {
+    this.appendValueInput("param")
+        .setCheck(null);
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField(",");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['array'] = {
+  init: function() {
+    this.appendValueInput("array")
+        .setCheck("Number")
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("[");
+    this.appendDummyInput()
+        .appendField("]");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['arrayad'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("[")
+        .appendField(new Blockly.FieldNumber(0, 1), "size")
+        .appendField("]");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("=");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['vardeclare'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "name");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['arrayassign'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("[");
+    this.appendValueInput("array")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("]");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("=");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['matrixdeclare'] = {
+  init: function() {
+    this.appendValueInput("matrix")
+        .setCheck(null)
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("[");
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("[");
+    this.appendDummyInput()
+        .appendField("]");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['matrixad'] = {
+  init: function() {
+    this.appendValueInput("size1")
+        .setCheck(null)
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("[");
+    this.appendValueInput("size2")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("[");
+    this.appendValueInput("value")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("=");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['arrayad'] = {
+  init: function() {
+    this.appendValueInput("size")
+        .setCheck(null)
+        .appendField(new Blockly.FieldDropdown([["int","int"], ["float","float"], ["string","string"], ["boolean","boolean"], ["void","void"]]), "type")
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("[");
+    this.appendValueInput("value")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("=");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
     this.setColour(230);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -789,3 +941,107 @@ Blockly.JavaScript['variable'] = function(block) {
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
+
+Blockly.JavaScript['parameteroperation'] = function(block) {
+  var value_param = Blockly.JavaScript.valueToCode(block, 'param', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+
+  if(value_name == ''){
+    var code = value_param;
+  }
+  else {
+    var code = value_param + ', ' + value_name;
+  }
+  // TODO: Change ORDER_NONE to the correct strength.
+  code = code.replace(/[()]/g,'');
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['array'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('name');
+  var value_array = Blockly.JavaScript.valueToCode(block, 'array', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = dropdown_type + ' ' + text_name + '[' + value_array + '];\n';
+  code = code.replace(/[()]/g,'');
+  return code;
+};
+
+Blockly.JavaScript['arrayad'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('NAME');
+  var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if(value_value == ''){
+    var code = dropdown_type + ' ' + text_name + '[' + value_size + '];\n';
+  }
+  else {
+    var code = dropdown_type + ' ' + text_name + '[' + value_size + '];\n';
+    code = code + '!int i=0;\n';
+    code = code + 'while¿i<'+ value_size + '?{\n';
+    code = code + '  ' + text_name +'[i]'  + ' = ' + value_value + ';\n';
+    code = code + '  i++;\n';
+    code = code + '}\n';
+  }
+  code = code.replace(/[()]/g,'');
+  return code;
+};
+
+Blockly.JavaScript['vardeclare'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('name');
+  // TODO: Assemble JavaScript into code variable.
+  var code = dropdown_type + ' ' + text_name + ';\n';
+  return code;
+};
+
+Blockly.JavaScript['arrayassign'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var value_array = Blockly.JavaScript.valueToCode(block, 'array', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + '[' +  value_array + ']' + ' = ' + value_name + ';\n';
+  code = code.replace(/[()]/g,'');
+  return code;
+};
+
+Blockly.JavaScript['matrixdeclare'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('name');
+  var value_matrix = Blockly.JavaScript.valueToCode(block, 'matrix', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = dropdown_type + ' ' + text_name + '[' + value_matrix + ']' + '[' + value_name + '];\n';
+  code = code.replace(/[()]/g,'');
+  return code;
+};
+
+Blockly.JavaScript['matrixad'] = function(block) {
+  var dropdown_type = block.getFieldValue('type');
+  var text_name = block.getFieldValue('name');
+  var value_size1 = Blockly.JavaScript.valueToCode(block, 'size1', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_size2 = Blockly.JavaScript.valueToCode(block, 'size2', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  if(value_value == ''){
+    var code = dropdown_type + ' ' + text_name + '[' + value_size1 + ']' + '[' + value_size2 + '];\n';
+  }
+  else {
+    var code = dropdown_type + ' ' + text_name + '[' + value_size1 + ']' + '[' + value_size2 + '];\n';
+    code = code + '¡int i=0;\n';
+    code = code + '!int j=0;\n';
+    code = code + 'while¿i<'+ value_size1 + '?{\n';
+    code = code + '  j=0;\n';
+    code = code + '  while¿j<'+ value_size2 + '?{\n';
+    code = code + '    ' + text_name +'[i]'+'[j]'  + ' = ' + value_value + ';\n';
+    code = code + '    j++;\n';
+    code = code + '  }\n';
+    code = code + '  i++;\n';
+    code = code + '}\n';
+  }
+  code = code.replace(/[()]/g,'');
+  return code;
+};
+
+
