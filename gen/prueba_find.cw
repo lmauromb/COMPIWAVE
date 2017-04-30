@@ -11,7 +11,7 @@ begin
         boolean b = False;
 
         while(i < 3){
-            if(arreglo[i] == 10){
+            if(arreglo[i] == 7){
                 b = True;
             }
             i = i + 1;

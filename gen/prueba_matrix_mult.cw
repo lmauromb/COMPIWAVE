@@ -71,7 +71,9 @@ begin
         matrix_R[2][3] = 0;
 
         while(i <  3){
+            j = 0;
             while(j < 4){
+                k = 0;
                 while(k < 3){
                     matrix_R[i][j] = matrix_R[i][j] + matrix_A[i][k] * matrix_B[k][j];
                     k = k + 1;
@@ -85,6 +87,7 @@ begin
         j = 0;
 
         while(i <  3){
+            j = 0;
             while(j < 4){
                 print(matrix_R[i][j]);
                 j = j + 1;

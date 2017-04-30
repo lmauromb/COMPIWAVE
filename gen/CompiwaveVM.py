@@ -359,12 +359,17 @@ class VirtualMachine:
                 self.global_memory[key] = leftOp * rightOP
             elif current_quad.operand == "S1M1M2":
                 leftOp = current_quad.leftOp
-                rightOP = int(current_quad.rightOp)
+                rightOP = current_quad.rightOp
 
                 if leftOp in self.range_cte:
                     leftOp = self.assign_cte(leftOp)
                 elif leftOp in self.global_memory:
                     leftOp = self.global_memory[leftOp]
+
+                if rightOP in self.range_cte:
+                    rightOP = self.assign_cte(rightOP)
+                elif rightOP in self.global_memory:
+                    rightOP = self.global_memory[rightOP]
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp + rightOP
