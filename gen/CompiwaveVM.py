@@ -7,10 +7,13 @@ class VirtualMachine:
         self.function_ref = function_ref
         self.cte_ref = cte_ref
         self.ip = 0
+        self.returns = []
         self.global_memory = OrderedDict()
         self.function_call = []
         self.fp = 0
         self.range_cte = range(50000, 80000)
+        self.range_param = range(90000, 95000)
+        self.range_global = range(5000, 25000)
         self.range_global_int = range(5000, 10000)
         self.range_global_float = range(10000, 15000)
         self.range_global_string = range(15000, 20000)
@@ -52,6 +55,8 @@ class VirtualMachine:
                     value = self.assign_cte(value)
                 elif value in self.global_memory:
                     value = self.global_memory[value]
+                elif value in self.function_ref:
+                    value = self.returns.pop()
                 else:
                     raise Exception("Variable is not initialized")
 
@@ -281,7 +286,14 @@ class VirtualMachine:
                 self.function_call.append(self.ip)
                 self.ip = self.function_ref[function_name] -1;
             elif current_quad.operand == "RETURN":
-                pass
+                value = current_quad.result
+
+                if value in self.range_cte:
+                    value = self.assign_cte(value)
+                elif value in self.global_memory:
+                    value = self.global_memory[value]
+
+                self.returns.append(value)
             elif current_quad.operand == "ENDFUNC":
                 self.ip = self.function_call.pop()
             elif current_quad.operand == "VER":

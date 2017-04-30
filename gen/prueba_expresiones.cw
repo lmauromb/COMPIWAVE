@@ -1,12 +1,15 @@
 begin
 
+    function int cont(){
+        int x = 2 + 1;
+        return x;
+    }
+
     main
     {
-
-        float x = -6 + .1;
-        print(x);
-
-
+        int j = 1;
+        print(j);
+        print(cont());
     }
 
 end
