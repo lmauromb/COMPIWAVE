@@ -14,7 +14,7 @@ begin
 
     main
     {
-        print(fibonacci(1));
+        print(fibonacci(11));
     }
 
 end
