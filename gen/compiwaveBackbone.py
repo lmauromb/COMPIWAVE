@@ -15,7 +15,7 @@ def main(argv):
     walker.walk(quadruplator, tree)
 
     # print("### CUADRUPLOS ###")
-    print("\n".join(str(i) for i in quadruplator.listaInstrucciones))
+    # print("\n".join(str(i) for i in quadruplator.listaInstrucciones))
     # print("### FuNCIONES ###")
     # print(quadruplator.diccionario_funciones)
     # print("### CONSTANTES ###")
@@ -27,7 +27,7 @@ def main(argv):
 
     virtual_machine.cpu()
 
-    print(virtual_machine.global_memory)
+    # print(virtual_machine.global_memory)
 
 if __name__ == '__main__':
     main(sys.argv)
