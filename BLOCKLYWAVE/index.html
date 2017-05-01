@@ -168,14 +168,12 @@
         {media: 'media/',
          toolbox: document.getElementById('toolbox')});
 
-    function indexes(source, find) {
-      var result = [];
-      for (i = 0; i < source.length; ++i) {
-        if (source.substring(i, i + find.length) == find) {
-          result.push(i);
-        }
-      }
-      return result;
+    var i = 0;
+    
+    function change() {
+      var color = ["yellow", "blue", "brown", "green", "red", "purple", "orange", "pink"];
+      document.body.style.backgroundColor = color[i];
+      i = (i + 1) % color.length;
     }
 
     function showCode(){
@@ -194,6 +192,7 @@
       var wave = code.search("a jalar que se ocupa");
       if(wave != -1){
         document.getElementById("wave").play();
+        setInterval(change, 1000);
       }
       //alert(code);
     }
