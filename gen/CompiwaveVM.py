@@ -40,33 +40,20 @@ class VirtualMachine:
 
     def cpu(self):
         current_quad = self.code[self.ip]
-        is_VM = False
-        current_VM = None
         while current_quad.operand != "HALT" and self.ip < len(self.code):
             self.ip += 1
             if current_quad.operand == "=":
                 value = current_quad.leftOp
                 key = current_quad.result
 
-                # if key in self.global_memory:
-                #     key = self.global_memory[key]
-
                 if value in self.range_cte:
                     value = self.assign_cte(value)
                 elif value in self.global_memory:
                     value = self.global_memory[value]
-                elif value in self.function_ref:
-                    value = self.returns.pop()
+                # elif value in self.function_ref: # Checar si es una funcion
+                #     value = self.returns.pop()
                 else:
                     raise Exception("Variable is not initialized")
-
-                # if is_VM:
-                #     key = self.global_memory[current_quad.result]
-                #     is_VM = False
-                # else:
-
-                # print("{} : {}".format(key, value))
-
 
                 if key in self.range_global_int or key in self.range_local_int:
                     value = int(value)
@@ -77,12 +64,7 @@ class VirtualMachine:
                 elif key in self.range_global_boolean or key in self.range_local_boolean:
                     value = bool(value)
 
-
                 self.global_memory[key] = value
-
-                # print("{} : {}".format(key, value))
-
-
 
             elif current_quad.operand == "*":
                 leftOp = current_quad.leftOp
@@ -99,6 +81,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp * rightOP
+
             elif current_quad.operand == "/":
                 leftOp = current_quad.leftOp
                 rightOP = current_quad.rightOp
@@ -114,6 +97,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp / rightOP
+
             elif current_quad.operand == "+":
                 leftOp = current_quad.leftOp
                 rightOP = current_quad.rightOp
@@ -145,6 +129,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp - rightOP
+
             elif current_quad.operand == "==":
                 leftOp = current_quad.leftOp
                 rightOP = current_quad.rightOp
@@ -248,9 +233,11 @@ class VirtualMachine:
                 elif result in self.global_memory:
                     result = self.global_memory[result]
                 print(result)
+
             elif current_quad.operand == "GOTO":
                 result = current_quad.result
                 self.ip = result - 1
+
             elif current_quad.operand == "GOTOT":
                 leftOp = current_quad.leftOp
                 result = current_quad.result
@@ -260,6 +247,7 @@ class VirtualMachine:
                     leftOp = self.global_memory[leftOp]
                 if leftOp:
                     self.ip = result - 1
+
             elif current_quad.operand == "GOTOF":
                 leftOp = current_quad.leftOp
                 result = current_quad.result
@@ -269,33 +257,22 @@ class VirtualMachine:
                     leftOp = self.global_memory[leftOp]
                 if not leftOp:
                     self.ip = result - 1
+
             elif current_quad.operand == "ERA":
                 pass
+
             elif current_quad.operand == "PARAM":
-                value = current_quad.leftOp
-                key = current_quad.result
+                pass
 
-                if value in self.range_cte:
-                    value = self.assign_cte(value)
-                elif value in self.global_memory:
-                    value = self.global_memory[value]
-
-                self.global_memory[key] = value
             elif current_quad.operand == "GOSUB":
-                function_name = current_quad.result
-                self.function_call.append(self.ip)
-                self.ip = self.function_ref[function_name] -1;
+                pass
+
             elif current_quad.operand == "RETURN":
-                value = current_quad.result
+                pass
 
-                if value in self.range_cte:
-                    value = self.assign_cte(value)
-                elif value in self.global_memory:
-                    value = self.global_memory[value]
-
-                self.returns.append(value)
             elif current_quad.operand == "ENDFUNC":
-                self.ip = self.function_call.pop()
+                pass
+
             elif current_quad.operand == "VER":
                 lim_inf = current_quad.rightOp
                 lim_sup = current_quad.result + 1
@@ -306,10 +283,9 @@ class VirtualMachine:
                 elif expr in self.global_memory:
                     expr = self.global_memory[expr]
 
-                is_VM = True
-
                 if expr not in limit_range:
                     raise Exception("Index out of bounds")
+
             elif current_quad.operand == "K":
                 leftOp = current_quad.leftOp
                 rightOP = int(current_quad.rightOp)
@@ -333,6 +309,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp + rightOP
+
             elif current_quad.operand == "ASSIGN":
                 value = current_quad.leftOp
                 key = current_quad.result
@@ -347,14 +324,6 @@ class VirtualMachine:
                 else:
                     raise Exception("Variable is not initialized")
 
-                # if is_VM:
-                #     key = self.global_memory[current_quad.result]
-                #     is_VM = False
-                # else:
-
-                # print("{} : {}".format(key, value))
-
-
                 if key in self.range_global_int or key in self.range_local_int:
                     value = int(value)
                 elif key in self.range_global_float or key in self.range_local_float:
@@ -365,11 +334,13 @@ class VirtualMachine:
                     value = bool(value)
 
                 self.global_memory[key] = value
+
             elif current_quad.operand == "ACCESS":
                 previous_quad = self.code[self.ip-2]
                 key = self.global_memory[previous_quad.result]
                 value = self.global_memory[key]
                 self.global_memory[previous_quad.result] = value
+
             elif current_quad.operand == "S1M1":
                 leftOp = current_quad.leftOp
                 rightOP = int(current_quad.rightOp)
@@ -381,6 +352,7 @@ class VirtualMachine:
 
                 key = current_quad.result
                 self.global_memory[key] = leftOp * rightOP
+
             elif current_quad.operand == "S1M1M2":
                 leftOp = current_quad.leftOp
                 rightOP = current_quad.rightOp
