@@ -8,8 +8,9 @@ begin
     main
     {
         int j = 1;
-        print(j);
         print(cont());
+        print(j);
+
     }
 
 end

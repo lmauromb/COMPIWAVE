@@ -9,6 +9,8 @@ class VirtualMachine:
         self.ip = 0
         self.returns = []
         self.global_memory = OrderedDict()
+        self.param_memory = OrderedDict()
+        self.memory_stack = []
         self.function_call = []
         self.fp = 0
         self.range_cte = range(50000, 80000)
@@ -50,8 +52,8 @@ class VirtualMachine:
                     value = self.assign_cte(value)
                 elif value in self.global_memory:
                     value = self.global_memory[value]
-                # elif value in self.function_ref: # Checar si es una funcion
-                #     value = self.returns.pop()
+                elif value in self.function_ref: # Checar si es una funcion
+                    value = self.returns.pop()
                 else:
                     raise Exception("Variable is not initialized")
 
@@ -262,16 +264,61 @@ class VirtualMachine:
                 pass
 
             elif current_quad.operand == "PARAM":
-                pass
+                value = current_quad.leftOp
+                key = current_quad.result
+
+                if value in self.range_cte:
+                    value = self.assign_cte(value)
+                elif value in self.global_memory:
+                    value = self.global_memory[value]
+                elif value in self.function_ref: # Checar si es una funcion
+                    value = self.returns.pop()
+                else:
+                    raise Exception("Variable is not initialized")
+
+                self.param_memory[key] = value
 
             elif current_quad.operand == "GOSUB":
-                pass
+                ref = current_quad.result
+                self.function_call.append(self.ip)
+                self.ip = self.function_ref[ref] - 1
+                new_memory = OrderedDict()
+                old_memory = OrderedDict()
+
+                for key in self.global_memory.keys():
+                    if int(key) in self.range_global:
+                        new_memory[key] = self.global_memory[key]
+
+                new_memory.update(self.param_memory)
+
+                self.param_memory.clear()
+
+                old_memory.update(self.global_memory)
+
+                self.memory_stack.append(old_memory)
+
+                self.global_memory.clear()
+
+                self.global_memory.update(new_memory)
 
             elif current_quad.operand == "RETURN":
-                pass
+                value = current_quad.result
+
+                if value in self.range_cte:
+                    value = self.assign_cte(value)
+                elif value in self.global_memory:
+                    value = self.global_memory[value]
+                elif value in self.function_ref: # Checar si es una funcion
+                    value = self.returns.pop()
+                else:
+                    raise Exception("Variable is not initialized")
+
+                self.returns.append(value)
 
             elif current_quad.operand == "ENDFUNC":
-                pass
+                self.ip = self.function_call.pop()
+                self.global_memory.clear()
+                self.global_memory.update(self.memory_stack.pop())
 
             elif current_quad.operand == "VER":
                 lim_inf = current_quad.rightOp
