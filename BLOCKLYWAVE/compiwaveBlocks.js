@@ -626,6 +626,22 @@ Blockly.Blocks['arrayad'] = {
   }
 };
 
+Blockly.Blocks['functionblock'] = {
+  init: function() {
+    this.appendValueInput("name")
+        .setCheck(null)
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("(");
+    this.appendDummyInput()
+        .appendField(")");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
 Blockly.JavaScript['comment'] = function(block) {
   var value_commenttext = Blockly.JavaScript.valueToCode(block, 'commentText', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '#' + value_commenttext + '\n';
@@ -806,7 +822,7 @@ Blockly.JavaScript['function'] = function(block) {
   var statements_content = Blockly.JavaScript.statementToCode(block, 'content');
   // TODO: Assemble JavaScript into code variable.
   var code = 'function ' + dropdown_functiontype + ' ' + text_name +
-   '¿' + value_parameters + '? {\n' + statements_content + '}\n';
+   '¿' + value_parameters + '?{\n' + statements_content + '}\n';
   code = code.replace(/[()]/g,'');
   return code;
 };
@@ -930,7 +946,8 @@ Blockly.JavaScript['break'] = function(block) {
 Blockly.JavaScript['return'] = function(block) {
   var value_return = Blockly.JavaScript.valueToCode(block, 'return', Blockly.JavaScript.ORDER_ATOMIC);
   // TODO: Assemble JavaScript into code variable.
-  var code = 'return ¿'+ value_return + '?;\n';
+  var code = 'return '+ value_return + ';\n';
+  code = code.replace(/[()]/g,'');
   return code;
 };
 
@@ -1042,6 +1059,16 @@ Blockly.JavaScript['matrixad'] = function(block) {
   }
   code = code.replace(/[()]/g,'');
   return code;
+};
+
+Blockly.JavaScript['functionblock'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var value_name = Blockly.JavaScript.valueToCode(block, 'name', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + '¿' + value_name + '?';
+  code = code.replace(/[()]/g,'');
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 

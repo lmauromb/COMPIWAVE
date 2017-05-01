@@ -49,12 +49,17 @@
     <button onclick="toXml()">Save B L O C K S 保存</button>
     <input type="file" id="fileInput">
     <button id="load">Load B L O C K S 加载</button>
+    <button onclick="postCode()">Run C O D E 跑</button>
   </p>
 
   <div id="blocklyDiv"></div>
 
   <div id="codeDisplay">
-      <textarea id="textCode" style="width: 332px; height: 475px"
+      <textarea id="textCode" style="width: 332px; height: 232px"
+        readonly=""></textarea>
+  </div>
+  <div id="codeDisplay">
+      <textarea id="textCode2" style="width: 332px; height: 232px"
         readonly=""></textarea>
   </div>
 
@@ -97,6 +102,9 @@
       <field name="value"></field>
     </block>
     <block type="parameteroperation"></block>
+    <block type="functionblock">
+      <field name="name"></field>
+    </block>
   </category>
   <category name="Input">
     <block type="string">
@@ -111,9 +119,11 @@
     <block type="float">
       <field name="fltInput">0</field>
     </block>
+    <!--
     <block type="boolean">
       <field name="blnInput">true</field>
     </block>
+    -->
   </category>
   <category name="Math">
     <block type="sum"></block>
@@ -255,6 +265,30 @@
         $( '#fileInput' ).trigger( 'click' );
       });
     });
+
+    function postCode(){
+      //Generate code and display it
+
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.JavaScript.workspaceToCode(workspace);
+      code = code.replace(/[¿]/g,'(');
+      code = code.replace(/[?]/g,')');
+      code = code.replace('¡int','int');
+      code = code.replace('!int','int');
+      code = code.replace(/¡int /g, '');
+      code = code.replace(/!int /g, '');
+      code = 'begin\n\n' + code + '\nend';
+      document.getElementById("textCode").value = code;
+      $.ajax({
+        type: "POST",
+        url: '/',
+        data: {code : code},
+        success: function(response){
+              document.getElementById("textCode2").value = response;
+            },
+        dataType: "text"
+      });
+    }
 
   </script>
 
