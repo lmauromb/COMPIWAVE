@@ -928,7 +928,25 @@ class CompiwaveBaseListener(CompiwaveListener):
             self.diccionario_cte[cte] = self.cont_cte
             self.cont_cte += 1
 
+    def enterNegativeIntConst(self, ctx:CompiwaveParser.NegativeIntConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
+
     def enterFloatConst(self, ctx:CompiwaveParser.FloatConstContext):
+        cte = ctx.getText()
+
+        if cte in self.diccionario_cte:
+            pass
+        else:
+            self.diccionario_cte[cte] = self.cont_cte
+            self.cont_cte += 1
+
+    def enterNegativeFloatConst(self, ctx:CompiwaveParser.NegativeFloatConstContext):
         cte = ctx.getText()
 
         if cte in self.diccionario_cte:

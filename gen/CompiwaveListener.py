@@ -296,6 +296,15 @@ class CompiwaveListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by CompiwaveParser#NegativeIntConst.
+    def enterNegativeIntConst(self, ctx:CompiwaveParser.NegativeIntConstContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#NegativeIntConst.
+    def exitNegativeIntConst(self, ctx:CompiwaveParser.NegativeIntConstContext):
+        pass
+
+
     # Enter a parse tree produced by CompiwaveParser#IntConst.
     def enterIntConst(self, ctx:CompiwaveParser.IntConstContext):
         pass
@@ -329,6 +338,15 @@ class CompiwaveListener(ParseTreeListener):
 
     # Exit a parse tree produced by CompiwaveParser#MultDiv.
     def exitMultDiv(self, ctx:CompiwaveParser.MultDivContext):
+        pass
+
+
+    # Enter a parse tree produced by CompiwaveParser#NegativeFloatConst.
+    def enterNegativeFloatConst(self, ctx:CompiwaveParser.NegativeFloatConstContext):
+        pass
+
+    # Exit a parse tree produced by CompiwaveParser#NegativeFloatConst.
+    def exitNegativeFloatConst(self, ctx:CompiwaveParser.NegativeFloatConstContext):
         pass
 
 

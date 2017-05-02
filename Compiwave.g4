@@ -129,7 +129,9 @@ expr
     | list_pop                      #ListPop
     | ID                            #VarReference
     | INT                           #IntConst
+    | '-'INT                        #NegativeIntConst
     | FLOAT                         #FloatConst
+    | '-'FLOAT                      #NegativeFloatConst
     | BOOLEAN                       #BoolConst
     | STRING                        #StringConst
     | '(' expr ')'                  #Paren
