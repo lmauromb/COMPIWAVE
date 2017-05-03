@@ -642,6 +642,68 @@ Blockly.Blocks['functionblock'] = {
   }
 };
 
+
+Blockly.Blocks['arrayaccess'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "name");
+    this.appendValueInput("size")
+        .setCheck(null)
+        .appendField("[");
+    this.appendDummyInput()
+        .appendField("]");
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['matrixaccess'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "name")
+        .appendField("[");
+    this.appendValueInput("size")
+        .setCheck(null);
+    this.appendValueInput("NAME")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("[");
+    this.appendDummyInput()
+        .appendField("]");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
+Blockly.Blocks['matrixassign'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput(""), "NAME")
+        .appendField("[");
+    this.appendValueInput("m1")
+        .setCheck("Number");
+    this.appendValueInput("m2")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("[");
+    this.appendValueInput("result")
+        .setCheck(null)
+        .appendField("]")
+        .appendField("=");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+
 Blockly.JavaScript['comment'] = function(block) {
   var value_commenttext = Blockly.JavaScript.valueToCode(block, 'commentText', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '#' + value_commenttext + '\n';
@@ -995,10 +1057,10 @@ Blockly.JavaScript['arrayad'] = function(block) {
   }
   else {
     var code = dropdown_type + ' ' + text_name + '[' + value_size + '];\n';
-    code = code + '!int i=0;\n';
+    code = code + '¡int i=0;\n';
     code = code + 'while¿i<'+ value_size + '?{\n';
     code = code + '  ' + text_name +'[i]'  + ' = ' + value_value + ';\n';
-    code = code + '  i++;\n';
+    code = code + '  i = i + 1;\n';
     code = code + '}\n';
   }
   code = code.replace(/[()]/g,'');
@@ -1052,9 +1114,9 @@ Blockly.JavaScript['matrixad'] = function(block) {
     code = code + '  j=0;\n';
     code = code + '  while¿j<'+ value_size2 + '?{\n';
     code = code + '    ' + text_name +'[i]'+'[j]'  + ' = ' + value_value + ';\n';
-    code = code + '    j++;\n';
+    code = code + '    j = j + 1;\n';
     code = code + '  }\n';
-    code = code + '  i++;\n';
+    code = code + '  i = i + 1;\n';
     code = code + '}\n';
   }
   code = code.replace(/[()]/g,'');
@@ -1069,6 +1131,37 @@ Blockly.JavaScript['functionblock'] = function(block) {
   code = code.replace(/[()]/g,'');
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['arrayaccess'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = text_name + '[' + value_size + ']';
+  code = code.replace(/[()]/g,'');
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['matrixaccess'] = function(block) {
+  var text_name = block.getFieldValue('name');
+  var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + '[' + value_size + ']' + '['+value_name + ']';
+  code = code.replace(/[()]/g,'');
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['matrixassign'] = function(block) {
+  var text_name = block.getFieldValue('NAME');
+  var value_m1 = Blockly.JavaScript.valueToCode(block, 'm1', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_m2 = Blockly.JavaScript.valueToCode(block, 'm2', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_result = Blockly.JavaScript.valueToCode(block, 'result', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = text_name + '[' + value_m1 + ']' + '[' + value_m2 + ']' + ' = ' + value_result + ';\n';
+  code = code.replace(/[()]/g,'');
+  return code;
 };
 
 
